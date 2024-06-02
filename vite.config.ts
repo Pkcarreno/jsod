@@ -3,22 +3,24 @@ import { defineConfig, loadEnv } from 'vite';
 import react from '@vitejs/plugin-react';
 import { VitePWA } from 'vite-plugin-pwa';
 import tsconfigPaths from 'vite-tsconfig-paths';
+import path from 'path';
 
 export default defineConfig(({ mode }) => {
   process.env = { ...process.env, ...loadEnv(mode, process.cwd()) };
   process.env.BASE_URL = process.env.VITE_BASE_URL ?? '';
   return {
-    base: process.env.BASE_URL,
+    base: `${process.env.BASE_URL}/`,
     plugins: [
       react(),
       tsconfigPaths(),
       VitePWA({
+        strategies: 'generateSW',
         registerType: 'autoUpdate',
         injectRegister: 'auto',
         manifest: {
           name: 'JS on Demand',
           short_name: 'JSOD',
-          start_url: '/',
+          start_url: `${process.env.BASE_URL}/`,
           display: 'standalone',
           background_color: '#FDFEFB',
           theme_color: '#fdfefb',
@@ -51,7 +53,37 @@ export default defineConfig(({ mode }) => {
           ],
         },
         workbox: {
-          globPatterns: ['**/*.{js,css,html,ico,png,svg}'],
+          globPatterns: ['**/*.{html,js,css,woff,woff2,ttf,eot,ico}'],
+          runtimeCaching: [
+            {
+              urlPattern: /\.(?:png|jpg|jpeg|svg|gif|webp|avif)$/,
+              handler: 'CacheFirst',
+              options: {
+                cacheName: 'images',
+                expiration: {
+                  maxEntries: 100,
+                  maxAgeSeconds: 30 * 24 * 60 * 60,
+                },
+              },
+            },
+            {
+              urlPattern: /\.(?:woff|woff2|ttf|eot|ico)$/,
+              handler: 'CacheFirst',
+              options: {
+                cacheName: 'fonts',
+                expiration: {
+                  maxEntries: 10,
+                  maxAgeSeconds: 30 * 24 * 60 * 60,
+                },
+              },
+            },
+          ],
+          navigateFallback: null,
+          cleanupOutdatedCaches: true,
+          clientsClaim: true,
+        },
+        injectManifest: {
+          globPatterns: ['**/*.{js,css,html,svg,png,svg,ico}'],
         },
       }),
       Unfonts({
@@ -74,6 +106,14 @@ export default defineConfig(({ mode }) => {
     define: {
       APP_VERSION: JSON.stringify(process.env.npm_package_version),
       BASE_URL: JSON.stringify(process.env.BASE_URL),
+    },
+    worker: {
+      format: 'es',
+    },
+    resolve: {
+      alias: {
+        '@': path.resolve(__dirname, './src'),
+      },
     },
     test: {
       globals: true,
