@@ -40,14 +40,24 @@ export const SharingMenu = () => {
     }
   };
 
-  useEffect(() => {
+  const handleTooltipTriggerClick = () => {
+    prepareSharedUrl();
+  };
+
+  const prepareSharedUrl = () => {
     const url = new URL(location.href);
+
     const searchParams = new URLSearchParams(location.hash.slice(1));
     if (!isWithCode) {
       searchParams.delete('code');
     }
     url.hash = searchParams.toString();
+
     setSharedUrl(url.href);
+  };
+
+  useEffect(() => {
+    prepareSharedUrl();
   }, [isTooltipOpen, isWithCode]);
 
   return (
@@ -56,7 +66,11 @@ export const SharingMenu = () => {
         <Tooltip open={isTooltipOpen} onOpenChange={setIsTooltipOpen}>
           <TooltipTrigger asChild>
             <PopoverTrigger asChild>
-              <Button size="icon" variant="outline">
+              <Button
+                size="icon"
+                variant="outline"
+                onClick={handleTooltipTriggerClick}
+              >
                 <Share1Icon />
                 <span className="sr-only">Shared current code</span>
               </Button>

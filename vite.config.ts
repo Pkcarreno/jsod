@@ -25,27 +25,47 @@ export default defineConfig(({ mode }) => {
           background_color: '#FDFEFB',
           theme_color: '#fdfefb',
           description: 'Write, run, and share JavaScript code instantly.',
+          screenshots: [
+            {
+              src: `${process.env.BASE_URL}/desktop-1.jpeg`,
+              sizes: '1694×930',
+              type: 'image/jpeg',
+              form_factor: 'wide',
+            },
+            {
+              src: `${process.env.BASE_URL}/mobile-1.jpeg`,
+              sizes: '412×915',
+              type: 'image/jpeg',
+              form_factor: 'narrow',
+            },
+            {
+              src: `${process.env.BASE_URL}/mobile-2.jpeg`,
+              sizes: '412×915',
+              type: 'image/jpeg',
+              form_factor: 'narrow',
+            },
+          ],
           icons: [
             {
-              src: '/pwa-192x192.png',
+              src: `${process.env.BASE_URL}/pwa-192x192.png`,
               sizes: '192x192',
               type: 'image/png',
               purpose: 'any',
             },
             {
-              src: '/pwa-512x512.png',
+              src: `${process.env.BASE_URL}/pwa-512x512.png`,
               sizes: '512x512',
               type: 'image/png',
               purpose: 'any',
             },
             {
-              src: '/pwa-maskable-192x192.png',
+              src: `${process.env.BASE_URL}/pwa-maskable-192x192.png`,
               sizes: '192x192',
               type: 'image/png',
               purpose: 'maskable',
             },
             {
-              src: '/pwa-maskable-512x512.png',
+              src: `${process.env.BASE_URL}/pwa-maskable-512x512.png`,
               sizes: '512x512',
               type: 'image/png',
               purpose: 'maskable',
@@ -53,8 +73,19 @@ export default defineConfig(({ mode }) => {
           ],
         },
         workbox: {
-          globPatterns: ['**/*.{html,js,css,woff,woff2,ttf,eot,ico}'],
+          globPatterns: ['**/*.{html,js,css,woff,woff2,ttf,eot,ico,wasm}'],
           runtimeCaching: [
+            {
+              urlPattern: /\.(?:wasm)$/,
+              handler: 'CacheFirst',
+              options: {
+                cacheName: 'web assembly',
+                expiration: {
+                  maxEntries: 10,
+                  maxAgeSeconds: 30 * 24 * 60 * 60,
+                },
+              },
+            },
             {
               urlPattern: /\.(?:png|jpg|jpeg|svg|gif|webp|avif)$/,
               handler: 'CacheFirst',
