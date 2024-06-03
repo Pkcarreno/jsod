@@ -53,8 +53,19 @@ export default defineConfig(({ mode }) => {
           ],
         },
         workbox: {
-          globPatterns: ['**/*.{html,js,css,woff,woff2,ttf,eot,ico}'],
+          globPatterns: ['**/*.{html,js,css,woff,woff2,ttf,eot,ico,wasm}'],
           runtimeCaching: [
+            {
+              urlPattern: /\.(?:wasm)$/,
+              handler: 'CacheFirst',
+              options: {
+                cacheName: 'web assembly',
+                expiration: {
+                  maxEntries: 10,
+                  maxAgeSeconds: 30 * 24 * 60 * 60,
+                },
+              },
+            },
             {
               urlPattern: /\.(?:png|jpg|jpeg|svg|gif|webp|avif)$/,
               handler: 'CacheFirst',
