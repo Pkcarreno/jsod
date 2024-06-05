@@ -144,6 +144,9 @@ importers:
       '@eslint/js':
         specifier: ^9.4.0
         version: 9.4.0
+      '@rollup/plugin-replace':
+        specifier: ^5.0.7
+        version: 5.0.7(rollup@2.79.1)
       '@testing-library/jest-dom':
         specifier: ^6.1.6
         version: 6.4.5(vitest@1.6.0(@types/node@20.13.0)(happy-dom@14.12.0)(jsdom@23.2.0)(terser@5.31.0))
@@ -162,6 +165,9 @@ importers:
       '@types/react-dom':
         specifier: ^18.2.18
         version: 18.3.0
+      '@vitejs/plugin-basic-ssl':
+        specifier: ^1.1.0
+        version: 1.1.0(vite@5.2.12(@types/node@20.13.0)(terser@5.31.0))
       '@vitejs/plugin-react':
         specifier: ^4.2.1
         version: 4.3.0(vite@5.2.12(@types/node@20.13.0)(terser@5.31.0))
@@ -234,6 +240,9 @@ importers:
       vitest:
         specifier: ^1.1.1
         version: 1.6.0(@types/node@20.13.0)(happy-dom@14.12.0)(jsdom@23.2.0)(terser@5.31.0)
+      workbox-window:
+        specifier: ^7.1.0
+        version: 7.1.0
 
 packages:
 
@@ -1853,6 +1862,15 @@ packages:
     peerDependencies:
       rollup: ^1.20.0 || ^2.0.0
 
+  '@rollup/plugin-replace@5.0.7':
+    resolution: {integrity: sha512-PqxSfuorkHz/SPpyngLyg5GCEkOcee9M1bkxiVDr41Pd61mqP1PLOoDPbpl44SB2mQGKwV/In74gqQmGITOhEQ==}
+    engines: {node: '>=14.0.0'}
+    peerDependencies:
+      rollup: ^1.20.0||^2.0.0||^3.0.0||^4.0.0
+    peerDependenciesMeta:
+      rollup:
+        optional: true
+
   '@rollup/plugin-terser@0.4.4':
     resolution: {integrity: sha512-XHeJC5Bgvs8LfukDwWZp7yeqin6ns8RTl2B9avbejt6tZqsqvVoWI7ZTQrcNsfKEDWBTnTxM8nMDkO2IFFbd0A==}
     engines: {node: '>=14.0.0'}
@@ -2159,6 +2177,12 @@ packages:
       '@babel/runtime': '>=7.10.0'
       react: '>=18.0.0'
       react-dom: '>=18.0.0'
+
+  '@vitejs/plugin-basic-ssl@1.1.0':
+    resolution: {integrity: sha512-wO4Dk/rm8u7RNhOf95ZzcEmC9rYOncYgvq4z3duaJrCgjN8BxAnDVyndanfcJZ0O6XZzHz6Q0hTimxTg8Y9g/A==}
+    engines: {node: '>=14.6.0'}
+    peerDependencies:
+      vite: ^3.0.0 || ^4.0.0 || ^5.0.0
 
   '@vitejs/plugin-react@4.3.0':
     resolution: {integrity: sha512-KcEbMsn4Dpk+LIbHMj7gDPRKaTMStxxWRkRmxsg/jVdFdJCZWt1SchZcf0M4t8lIKdwwMsEyzhrcOXRrDPtOBw==}
@@ -6819,6 +6843,13 @@ snapshots:
       magic-string: 0.25.9
       rollup: 2.79.1
 
+  '@rollup/plugin-replace@5.0.7(rollup@2.79.1)':
+    dependencies:
+      '@rollup/pluginutils': 5.1.0(rollup@2.79.1)
+      magic-string: 0.30.10
+    optionalDependencies:
+      rollup: 2.79.1
+
   '@rollup/plugin-terser@0.4.4(rollup@2.79.1)':
     dependencies:
       serialize-javascript: 6.0.2
@@ -7164,6 +7195,10 @@ snapshots:
       '@babel/runtime': 7.24.6
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
+
+  '@vitejs/plugin-basic-ssl@1.1.0(vite@5.2.12(@types/node@20.13.0)(terser@5.31.0))':
+    dependencies:
+      vite: 5.2.12(@types/node@20.13.0)(terser@5.31.0)
 
   '@vitejs/plugin-react@4.3.0(vite@5.2.12(@types/node@20.13.0)(terser@5.31.0))':
     dependencies:

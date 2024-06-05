@@ -1,21 +1,32 @@
 import Unfonts from 'unplugin-fonts/vite';
-import { defineConfig, loadEnv } from 'vite';
+import { Plugin, defineConfig, loadEnv } from 'vite';
 import react from '@vitejs/plugin-react';
 import { VitePWA } from 'vite-plugin-pwa';
 import tsconfigPaths from 'vite-tsconfig-paths';
 import path from 'path';
+import basicSsl from '@vitejs/plugin-basic-ssl';
+import replace from '@rollup/plugin-replace';
+import type { RollupReplaceOptions } from '@rollup/plugin-replace';
+
+const replaceOptions: RollupReplaceOptions = {
+  __DATE__: new Date().toISOString(),
+  preventAssignment: true,
+};
 
 export default defineConfig(({ mode }) => {
   process.env = { ...process.env, ...loadEnv(mode, process.cwd()) };
   process.env.BASE_URL = process.env.VITE_BASE_URL ?? '';
+
   return {
     base: `${process.env.BASE_URL}/`,
     plugins: [
       react(),
       tsconfigPaths(),
+      basicSsl(),
+      replace(replaceOptions) as Plugin,
       VitePWA({
         strategies: 'generateSW',
-        registerType: 'autoUpdate',
+        registerType: 'prompt',
         injectRegister: 'auto',
         manifest: {
           name: 'JS on Demand',
@@ -73,48 +84,13 @@ export default defineConfig(({ mode }) => {
           ],
         },
         workbox: {
-          globPatterns: ['**/*.{html,js,css,woff,woff2,ttf,eot,ico,wasm}'],
-          runtimeCaching: [
-            {
-              urlPattern: /\.(?:wasm)$/,
-              handler: 'CacheFirst',
-              options: {
-                cacheName: 'web assembly',
-                expiration: {
-                  maxEntries: 10,
-                  maxAgeSeconds: 30 * 24 * 60 * 60,
-                },
-              },
-            },
-            {
-              urlPattern: /\.(?:png|jpg|jpeg|svg|gif|webp|avif)$/,
-              handler: 'CacheFirst',
-              options: {
-                cacheName: 'images',
-                expiration: {
-                  maxEntries: 100,
-                  maxAgeSeconds: 30 * 24 * 60 * 60,
-                },
-              },
-            },
-            {
-              urlPattern: /\.(?:woff|woff2|ttf|eot|ico)$/,
-              handler: 'CacheFirst',
-              options: {
-                cacheName: 'fonts',
-                expiration: {
-                  maxEntries: 10,
-                  maxAgeSeconds: 30 * 24 * 60 * 60,
-                },
-              },
-            },
-          ],
-          navigateFallback: null,
-          cleanupOutdatedCaches: true,
-          clientsClaim: true,
+          globPatterns: ['**/*.{html,js,css,svg,woff,woff2,ttf,eot,ico,wasm}'],
+          sourcemap: true,
         },
-        injectManifest: {
-          globPatterns: ['**/*.{js,css,html,svg,png,svg,ico}'],
+        devOptions: {
+          enabled: process.env.NODE_ENV === 'development',
+          /* when using generateSW the PWA plugin will switch to classic */
+          type: 'module',
         },
       }),
       Unfonts({
