@@ -31,11 +31,23 @@ export default defineConfig(({ mode }) => {
         manifest: {
           name: 'JS on Demand',
           short_name: 'JSOD',
+          id: 'com.pkcarreno.jsod',
           start_url: `${process.env.BASE_URL}/`,
           display: 'standalone',
           background_color: '#FDFEFB',
           theme_color: '#fdfefb',
           description: 'Write, run, and share JavaScript code instantly.',
+          prefer_related_applications: false,
+          categories: ['productivity', 'utilities'],
+          orientation: 'portrait',
+          dir: 'ltr',
+          shortcuts: [
+            {
+              name: 'New Editor',
+              url: `${process.env.BASE_URL}/`,
+              description: 'Open new editor',
+            },
+          ],
           screenshots: [
             {
               src: `${process.env.BASE_URL}/desktop-1.jpeg`,
