@@ -1,5 +1,18 @@
 # Changelog
 
+## [1.1.0](https://github.com/Pkcarreno/jsod/compare/v1.0.2...v1.1.0) (2024-06-05)
+
+
+### Features
+
+* **pwa:** prompt offline ready and new update ([d15a49f](https://github.com/Pkcarreno/jsod/commit/d15a49f6380b3a4226c725c28f56dfc8c43e90e5))
+
+
+### Bug Fixes
+
+* improve app icon ([6ecd3f1](https://github.com/Pkcarreno/jsod/commit/6ecd3f13723ce6adbe92a327b8a2766759ba8d1a))
+* improve url compatibility ([9b2a41a](https://github.com/Pkcarreno/jsod/commit/9b2a41ad6818c9ba9c460385bed7703b277d7bb0))
+
 ## [1.0.2](https://github.com/Pkcarreno/jsod/compare/v1.0.1...v1.0.2) (2024-06-03)
 
 
