@@ -2,9 +2,13 @@ import { Toaster } from '@/components/ui/sonner';
 import { ThemeProvider } from '@/providers/theme-provider';
 import Router from '@/routes';
 
+import { PromptProvider } from './providers/prompt-provider';
+
 const App = () => (
   <ThemeProvider storageKey="theme">
-    <Router />
+    <PromptProvider>
+      <Router />
+    </PromptProvider>
     <Toaster />
   </ThemeProvider>
 );

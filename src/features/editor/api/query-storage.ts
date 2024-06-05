@@ -1,4 +1,4 @@
-import { decode, encode } from 'js-base64';
+import { decode, encodeURI } from 'js-base64';
 import type { StateStorage } from 'zustand/middleware';
 
 export const queryStorage: StateStorage = {
@@ -9,7 +9,7 @@ export const queryStorage: StateStorage = {
   },
   setItem: (key, newValue): void => {
     const searchParams = new URLSearchParams(location.hash.slice(1));
-    searchParams.set(key, encode(JSON.stringify(newValue)));
+    searchParams.set(key, encodeURI(JSON.stringify(newValue)));
     location.hash = searchParams.toString();
   },
   removeItem: (key): void => {

@@ -8,7 +8,7 @@ import tseslint from 'typescript-eslint';
 
 export default tseslint.config(
   {
-    ignores: ['node_modules/*', 'dev-dist/*'],
+    ignores: ['node_modules/*', 'dev-dist/*', 'dist/*'],
   },
   {
     rules: {
