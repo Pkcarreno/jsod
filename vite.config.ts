@@ -13,6 +13,43 @@ const replaceOptions: RollupReplaceOptions = {
   preventAssignment: true,
 };
 
+const generateIcons = (basePath: string) => {
+  const MASKABLE_ICONS_SIZES = [
+    '1080',
+    '512',
+    '384',
+    '192',
+    '128',
+    '96',
+    '72',
+    '64',
+    '48',
+  ];
+  const NO_MASKABLE_ICONS_SIZES = ['1080', '512', '196', '180'];
+  const MASKABLE_ICONS_NAME = 'pwa-maskable_icon_x';
+  const NO_MASKABLE_ICONS_NAME = 'pwa-icon_x';
+
+  const maskableIcons = MASKABLE_ICONS_SIZES.map((size) => {
+    return {
+      src: `${basePath}/icons/${MASKABLE_ICONS_NAME}${size}.png`,
+      sizes: `${size}x${size}`,
+      type: 'image/png',
+      purpose: 'maskable',
+    };
+  });
+
+  const nonMaskableIcons = NO_MASKABLE_ICONS_SIZES.map((size) => {
+    return {
+      src: `${basePath}/icons/${NO_MASKABLE_ICONS_NAME}${size}.png`,
+      sizes: `${size}x${size}`,
+      type: 'image/png',
+      purpose: 'any',
+    };
+  });
+
+  return [...maskableIcons, ...nonMaskableIcons];
+};
+
 export default defineConfig(({ mode }) => {
   process.env = { ...process.env, ...loadEnv(mode, process.cwd()) };
   process.env.BASE_URL = process.env.VITE_BASE_URL ?? '';
@@ -50,50 +87,25 @@ export default defineConfig(({ mode }) => {
           ],
           screenshots: [
             {
-              src: `${process.env.BASE_URL}/desktop-1.jpeg`,
+              src: `${process.env.BASE_URL}/screenshots/desktop-1.jpeg`,
               sizes: '1694×930',
               type: 'image/jpeg',
               form_factor: 'wide',
             },
             {
-              src: `${process.env.BASE_URL}/mobile-1.jpeg`,
+              src: `${process.env.BASE_URL}/screenshots/mobile-1.jpeg`,
               sizes: '412×915',
               type: 'image/jpeg',
               form_factor: 'narrow',
             },
             {
-              src: `${process.env.BASE_URL}/mobile-2.jpeg`,
+              src: `${process.env.BASE_URL}/screenshots/mobile-2.jpeg`,
               sizes: '412×915',
               type: 'image/jpeg',
               form_factor: 'narrow',
             },
           ],
-          icons: [
-            {
-              src: `${process.env.BASE_URL}/pwa-192x192.png`,
-              sizes: '192x192',
-              type: 'image/png',
-              purpose: 'any',
-            },
-            {
-              src: `${process.env.BASE_URL}/pwa-512x512.png`,
-              sizes: '512x512',
-              type: 'image/png',
-              purpose: 'any',
-            },
-            {
-              src: `${process.env.BASE_URL}/pwa-maskable-192x192.png`,
-              sizes: '192x192',
-              type: 'image/png',
-              purpose: 'maskable',
-            },
-            {
-              src: `${process.env.BASE_URL}/pwa-maskable-512x512.png`,
-              sizes: '512x512',
-              type: 'image/png',
-              purpose: 'maskable',
-            },
-          ],
+          icons: generateIcons(process.env.BASE_URL),
         },
         workbox: {
           globPatterns: ['**/*.{html,js,css,svg,woff,woff2,ttf,eot,ico,wasm}'],
