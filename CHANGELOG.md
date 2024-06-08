@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.2.0](https://github.com/Pkcarreno/jsod/compare/v1.1.0...v1.2.0) (2024-06-08)
+
+
+### Features
+
+* show badge on bottom bar in mobile view ([02dcefd](https://github.com/Pkcarreno/jsod/commit/02dcefdf5c84614bd1585b80223b02a108840cf5))
+* shows repeated log counter ([bea17ec](https://github.com/Pkcarreno/jsod/commit/bea17ec675181aab5480b13a29ac526618359331))
+
 ## [1.1.0](https://github.com/Pkcarreno/jsod/compare/v1.0.2...v1.1.0) (2024-06-05)
 
 
