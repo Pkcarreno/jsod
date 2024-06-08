@@ -3,24 +3,38 @@ import { create } from 'zustand';
 import type { log } from '@/features/editor/types';
 import { createSelectors } from '@/lib/utils';
 
+import LinkedLogs from '../../lib/linked-log';
+
+const logsList = new LinkedLogs();
+
 interface LogsState {
   logs: log[];
   isFirstTime: boolean;
+  alert: boolean;
   appendLogs: (logs: log) => void;
-  setLogs: (logs: log[]) => void;
   clearLogs: () => void;
+  clearAlert: () => void;
 }
 
 const _useLogsStore = create<LogsState>((set) => ({
   logs: [],
   isFirstTime: true,
-  appendLogs: (logs: log) =>
-    set((state) => ({
-      logs: [...state.logs, logs],
+  alert: false,
+  appendLogs: (log: log) => {
+    logsList.append(log);
+    set({
+      logs: logsList.getAllLogsInArray(),
       isFirstTime: false,
-    })),
-  setLogs: (logs: log[]) => set({ logs, isFirstTime: false }),
-  clearLogs: () => set({ logs: [] }),
+      alert: true,
+    });
+  },
+  clearLogs: () => {
+    logsList.clearFirst();
+    set({ logs: [] });
+  },
+  clearAlert: () => {
+    set({ alert: false });
+  },
 }));
 
 export const useLogsStore = createSelectors(_useLogsStore);

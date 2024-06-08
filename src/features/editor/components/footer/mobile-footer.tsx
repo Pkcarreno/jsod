@@ -1,6 +1,7 @@
 import { CodeIcon, ListBulletIcon } from '@radix-ui/react-icons';
 import React from 'react';
 
+import { useLogsStore } from '../../stores/editor';
 import { BottomTabsContainer, BottomTabsTab } from '../ui/bottom-tabs';
 import type { FooterProps } from './types';
 
@@ -15,6 +16,8 @@ export const MobileFooter: React.FC<Props> = ({
   isRightActive,
   className,
 }) => {
+  const { alert, clearAlert } = useLogsStore();
+
   return (
     <BottomTabsContainer className={className}>
       <BottomTabsTab
@@ -26,7 +29,11 @@ export const MobileFooter: React.FC<Props> = ({
       <BottomTabsTab
         label="Output"
         icon={ListBulletIcon}
-        onClick={onRightClick}
+        onClick={() => {
+          onRightClick();
+          clearAlert();
+        }}
+        showBadge={alert}
         isActive={isRightActive}
       />
     </BottomTabsContainer>

@@ -33,12 +33,14 @@ interface BottomTabsTabProps extends ButtonProps {
   label: string;
   icon: ForwardRefExoticComponent<IconProps & RefAttributes<SVGSVGElement>>;
   isActive?: boolean;
+  showBadge?: boolean;
 }
 
 export const BottomTabsTab: React.FC<BottomTabsTabProps> = ({
   label,
   icon,
   isActive = false,
+  showBadge,
   ...props
 }) => {
   const Icon = icon;
@@ -50,10 +52,16 @@ export const BottomTabsTab: React.FC<BottomTabsTabProps> = ({
     >
       <div
         className={cn(
-          'flex size-fit items-center justify-center rounded-2xl px-5 py-1 transition-colors',
+          'relative flex size-fit items-center justify-center rounded-2xl px-5 py-1 transition-colors',
           isActive && 'bg-primary text-primary-foreground',
         )}
       >
+        <div
+          className={cn(
+            'absolute right-0 top-0 size-3 rounded-full transition-colors',
+            showBadge ? 'bg-destructive' : 'transparent',
+          )}
+        />
         <div className="flex size-6 items-center justify-center">
           <Icon className="size-4" />
         </div>
