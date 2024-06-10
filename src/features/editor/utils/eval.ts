@@ -12,6 +12,7 @@ import type {
 } from '@/features/editor/types';
 
 import { getQuickJS } from './quick-js';
+import { rfdc } from './rfdc';
 
 let startTimeRef: number | undefined;
 
@@ -33,27 +34,6 @@ const disposeQuickJS = () => {
 
 const getTimeSinceExecutionBegan = () =>
   startTimeRef ? Date.now() - startTimeRef : 0;
-
-function serialize(val: unknown): Loggable {
-  // obj handler
-  if (typeof val === 'object' && val !== null && !Array.isArray(val)) {
-    const shallowCopy = { ...val };
-    const newObj = {} as Record<string, unknown>;
-    Object.keys(shallowCopy).forEach((k: string) => {
-      newObj[k] = serialize((shallowCopy as Record<string, unknown>)[k]);
-    });
-    return newObj as Loggable;
-  }
-
-  // array handler
-  if (val !== null && Array.isArray(val)) {
-    const shallowCopy = [...val];
-    return shallowCopy.map(serialize) as Loggable;
-  }
-
-  // default
-  return val as Loggable;
-}
 
 const ERROR_PROPERTIES = [
   'name',
@@ -86,8 +66,7 @@ function serializeError(
 
 const handleLogType = (type: consoleAvailableHandlers) => {
   return (...args: unknown[]) => {
-    const clonedArgs = args.map(serialize);
-    // console.debug(type, clonedArgs);
+    const clonedArgs = args.map(rfdc) as Loggable;
     postMessage({
       command: 'log',
       data: {
