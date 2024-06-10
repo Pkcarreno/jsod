@@ -21,7 +21,14 @@ export default tseslint.config(
       ],
       'import/prefer-default-export': 'off', // Named export is easier to refactor automatically
       'max-params': ['error', 3], // Limit the number of parameters in a function to use object instead
-      'max-lines-per-function': ['error', 70],
+      'max-lines-per-function': [
+        'error',
+        {
+          max: 70,
+          skipBlankLines: true,
+          skipComments: true,
+        },
+      ],
       'react/destructuring-assignment': 'off', // Vscode doesn't support automatically destructuring, it's a pain to add a new variable
       'react/require-default-props': 'off', // Allow non-defined react props as undefined
     },
