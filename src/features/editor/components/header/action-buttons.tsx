@@ -9,7 +9,6 @@ import { runJs, stopJs } from '@/features/editor/utils/runtime';
 import useDebounce from '@/hooks/use-debounce';
 import useTimeoutFn from '@/hooks/use-timeout-fn';
 
-// eslint-disable-next-line max-lines-per-function
 export const ActionButtons = () => {
   const { persist_logs, auto_run, auto_run_timeout } = useSettingsStore();
   const { code } = useCodeStore();
