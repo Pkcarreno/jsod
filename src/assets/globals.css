@@ -93,4 +93,19 @@
     font-synthesis-weight: none;
     text-rendering: optimizeLegibility;
   }
+  ::-webkit-scrollbar {
+    @apply size-1.5;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply bg-foreground/20 rounded-full;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-foreground/30;
+  }
+  ::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
+  ::-webkit-scrollbar-corner {
+    @apply bg-transparent;
+  }
 }
