@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.2.1](https://github.com/Pkcarreno/jsod/compare/v1.2.0...v1.2.1) (2024-06-29)
+
+
+### Bug Fixes
+
+* handle long output ([6b57469](https://github.com/Pkcarreno/jsod/commit/6b57469d5cdfd3134298b4ad14c2b336a595d7d4))
+* tweak scrollbar on chromium based browsers ([3e4d255](https://github.com/Pkcarreno/jsod/commit/3e4d255675b196742698ed42678bc51e9b15915a))
+
 ## [1.2.0](https://github.com/Pkcarreno/jsod/compare/v1.1.0...v1.2.0) (2024-06-08)
 
 
