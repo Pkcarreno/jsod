@@ -102,7 +102,7 @@ const Value: React.FC<ValueProps> = ({ variant, value, repeats, duration }) => {
           <FormatOutput value={value} />
         </div>
       </div>
-      <span className=" flex gap-2 text-sm opacity-50">
+      <span className=" ml-auto flex gap-2 text-sm opacity-50">
         {repeats > REPEATS_TOLERANCE && (
           <Badge variant="secondary" className="px-2">
             {repeats}

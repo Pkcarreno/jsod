@@ -10,7 +10,7 @@ interface Props {
 
 export const FormatOutput: React.FC<Props> = ({ value }) => {
   if (typeof value === 'string') {
-    return <span className="whitespace-pre-wrap">{value}</span>;
+    return <span className="whitespace-pre-wrap break-all">{value}</span>;
   }
 
   if (value && Array.isArray(value) && value.length > 0) {
@@ -18,7 +18,7 @@ export const FormatOutput: React.FC<Props> = ({ value }) => {
       if (subValue && typeof subValue === 'string') {
         return (
           <div key={`string-${index}`} className="w-fit">
-            <span className="whitespace-pre-wrap">{subValue}</span>
+            <span className="whitespace-pre-wrap break-all">{subValue}</span>
           </div>
         );
       }
