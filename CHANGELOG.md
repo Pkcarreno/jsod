@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.2](https://github.com/Pkcarreno/jsod/compare/v1.2.1...v1.2.2) (2024-07-07)
+
+
+### Bug Fixes
+
+* codemirror eslint incompatible type ([e2a8138](https://github.com/Pkcarreno/jsod/commit/e2a8138d031cec0948d620925459465d283618ad))
+
 ## [1.2.1](https://github.com/Pkcarreno/jsod/compare/v1.2.0...v1.2.1) (2024-06-29)
 
 
