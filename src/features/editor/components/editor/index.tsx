@@ -4,6 +4,7 @@ import { basicSetup } from '@uiw/codemirror-extensions-basic-setup';
 import type { ReactCodeMirrorProps } from '@uiw/react-codemirror';
 import CodeMirror from '@uiw/react-codemirror';
 import * as eslint from 'eslint-linter-browserify';
+import { worker as globalsWorker } from 'globals';
 import { useMemo, useRef } from 'react';
 
 import { useTheme } from '@/hooks/use-theme';
@@ -18,6 +19,10 @@ const lightTheme = themeInit({ theme: 'light' });
 
 const EsLintConfig = {
   languageOptions: {
+    globals: {
+      ...globalsWorker,
+      console: true,
+    },
     parserOptions: {
       ecmaVersion: 2023,
       sourceType: 'module',

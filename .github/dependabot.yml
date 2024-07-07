@@ -3,8 +3,7 @@ updates:
   - package-ecosystem: 'npm'
     directory: '/'
     schedule:
-      interval: 'monthly'
-      time: '01:00'
+      interval: 'weekly'
     commit-message:
       prefix: 'pnpm'
     groups:
