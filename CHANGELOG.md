@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.3.0](https://github.com/Pkcarreno/jsod/compare/v1.2.1...v1.3.0) (2024-07-07)
+
+
+### Features
+
+* expose globals to codemirror eslint ([78661f8](https://github.com/Pkcarreno/jsod/commit/78661f8badf01e401bb4e61aa230ab0c4e3b2e47))
+
+
+### Bug Fixes
+
+* codemirror eslint incompatible type ([e2a8138](https://github.com/Pkcarreno/jsod/commit/e2a8138d031cec0948d620925459465d283618ad))
+
 ## [1.2.1](https://github.com/Pkcarreno/jsod/compare/v1.2.0...v1.2.1) (2024-06-29)
 
 
