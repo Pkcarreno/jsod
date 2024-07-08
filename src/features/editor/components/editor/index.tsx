@@ -45,7 +45,6 @@ const extensions: ReactCodeMirrorProps['extensions'] = [
   }),
   javascript(),
   lintGutter(),
-  // @ts-expect-error: type incompatible but are the same
   linter(esLint(new eslint.Linter(), EsLintConfig)),
 ];
 
