@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.1](https://github.com/Pkcarreno/jsod/compare/v1.3.0...v1.3.1) (2024-07-08)
+
+
+### Bug Fixes
+
+* issue at resolving packages ([ab184d1](https://github.com/Pkcarreno/jsod/commit/ab184d1322cac3c41c5f2be5b7d481e8f9e7c953))
+
 ## [1.3.0](https://github.com/Pkcarreno/jsod/compare/v1.2.1...v1.3.0) (2024-07-07)
 
 
