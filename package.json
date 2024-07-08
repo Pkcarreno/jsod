@@ -89,19 +89,19 @@
     "eslint-plugin-unused-imports": "^4.0.0",
     "happy-dom": "^14.12.3",
     "husky": "^9.0.11",
-    "knip": "^5.24.1",
+    "knip": "^5.25.1",
     "lint-staged": "^15.2.7",
     "postcss": "^8.4.39",
     "prettier": "^3.3.2",
     "tailwindcss": "^3.4.4",
     "tailwindcss-animate": "^1.0.7",
     "typescript": "^5.5.3",
-    "typescript-eslint": "8.0.0-alpha.39",
+    "typescript-eslint": "8.0.0-alpha.41",
     "unplugin-fonts": "^1.1.1",
     "vite": "^5.3.3",
     "vite-plugin-pwa": "^0.20.0",
     "vite-tsconfig-paths": "^4.3.1",
-    "vitest": "^1.1.1",
+    "vitest": "^2.0.1",
     "workbox-window": "^7.1.0"
   }
 }
