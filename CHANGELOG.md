@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.2](https://github.com/Pkcarreno/jsod/compare/v1.3.1...v1.3.2) (2024-07-16)
+
+
+### Bug Fixes
+
+* **sonner:** add important modifier to button styles ([150108a](https://github.com/Pkcarreno/jsod/commit/150108ab7331049a9bd1640d7004ec9050f2ce3b))
+
 ## [1.3.1](https://github.com/Pkcarreno/jsod/compare/v1.3.0...v1.3.1) (2024-07-08)
 
 
