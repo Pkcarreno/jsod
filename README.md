@@ -48,10 +48,10 @@ And then open [http://localhost:4000](http://localhost:4000) to view it in the b
 
 ## Thanks to
 
-[Vite Template React](https://github.com/SafdarJamal/vite-template-react): Template used in this project.
-[quickjs-emscripten](https://github.com/justjake/quickjs-emscripten) and [quickjs-emscripten-sync](https://github.com/reearth/quickjs-emscripten-sync): Quickjs wrapper, the engine of this app.
-[codi.link](http://codi.link): Web editor, made in community. Great inspiration.
-[borrowed.nvim](https://github.com/MyyPo/borrowed.nvim): Neovim color scheme, take the naming convention to create a color scheme under the JSOD color palette.
+- [Vite Template React](https://github.com/SafdarJamal/vite-template-react): Template used in this project.
+- [quickjs-emscripten](https://github.com/justjake/quickjs-emscripten) and [quickjs-emscripten-sync](https://github.com/reearth/quickjs-emscripten-sync): Quickjs wrapper, the engine of this app.
+- [codi.link](http://codi.link): Web editor, made in community. Great inspiration.
+- [borrowed.nvim](https://github.com/MyyPo/borrowed.nvim): Neovim color scheme, take the naming convention to create a color scheme under the JSOD color palette.
 
 ## License
 
