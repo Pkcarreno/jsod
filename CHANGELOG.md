@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.3](https://github.com/Pkcarreno/jsod/compare/v1.3.2...v1.3.3) (2024-08-06)
+
+
+### Bug Fixes
+
+* increase workbox maximum file size to cache on buildtime ([ac8f178](https://github.com/Pkcarreno/jsod/commit/ac8f17861cdeee9f27906d2ef6ed7e749c15bb18))
+
 ## [1.3.2](https://github.com/Pkcarreno/jsod/compare/v1.3.1...v1.3.2) (2024-07-16)
 
 
