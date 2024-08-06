@@ -109,6 +109,7 @@ export default defineConfig(({ mode }) => {
         },
         workbox: {
           globPatterns: ['**/*.{html,js,css,svg,woff,woff2,ttf,eot,ico,wasm}'],
+          maximumFileSizeToCacheInBytes: 5000000,
           sourcemap: true,
         },
         devOptions: {
