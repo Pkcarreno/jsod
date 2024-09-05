@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.4](https://github.com/Pkcarreno/jsod/compare/v1.3.3...v1.3.4) (2024-09-05)
+
+
+### Bug Fixes
+
+* modules incompatibility ([c5a13a2](https://github.com/Pkcarreno/jsod/commit/c5a13a2d54f3a92e6389aa45f30189d838fd0613))
+
 ## [1.3.3](https://github.com/Pkcarreno/jsod/compare/v1.3.2...v1.3.3) (2024-08-06)
 
 
