@@ -5,9 +5,10 @@ import { Button } from '@/components/ui/button';
 import { useUntrustedMode } from '@/features/editor/hooks/use-untrusted-mode';
 import { useCodeStore, useLogsStore } from '@/features/editor/stores/editor';
 import { useSettingsStore } from '@/features/editor/stores/settings';
-import { runJs, stopJs } from '@/features/editor/utils/runtime';
 import useDebounce from '@/hooks/use-debounce';
 import useTimeoutFn from '@/hooks/use-timeout-fn';
+
+import { runJs, stopJs } from '../../utils/engine/controller';
 
 export const ActionButtons = () => {
   const { persist_logs, auto_run, auto_run_timeout } = useSettingsStore();

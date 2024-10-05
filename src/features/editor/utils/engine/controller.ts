@@ -5,8 +5,8 @@ import type {
   SystemError,
 } from '@/features/editor/types';
 
-import { appendLogs } from '../stores/editor';
-import { SettingsLoopSafeguardTimeout } from '../stores/settings';
+import { appendLogs } from '../../stores/editor';
+import { SettingsLoopSafeguardTimeout } from '../../stores/settings';
 
 let workerRef: Worker | undefined = undefined;
 let timeoutIdRef: ReturnType<typeof setInterval> | undefined = undefined;
@@ -31,9 +31,12 @@ export function runJs(code: string) {
   const startTime = Date.now();
 
   return new Promise((resolve, reject) => {
-    const worker = new Worker(new URL('./eval.ts', import.meta.url), {
-      type: 'module',
-    });
+    const worker = new Worker(
+      new URL('./execution-manager.ts', import.meta.url),
+      {
+        type: 'module',
+      },
+    );
     workerRef = worker;
 
     const logError = (message: SystemError, duration: number = 0) => {

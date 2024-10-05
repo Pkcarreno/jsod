@@ -2,8 +2,8 @@
 import type { QuickJSContext } from 'quickjs-emscripten-core';
 import { Arena } from 'quickjs-emscripten-sync';
 
-import type { Loggable, SystemError } from '../types';
-import { getQuickJS } from './quick-js';
+import type { Loggable, SystemError } from '../../types';
+import { getQuickJS } from '../quick-js';
 
 let arenaRef: Arena;
 let ctxRef: QuickJSContext;
