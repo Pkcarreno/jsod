@@ -1,13 +1,19 @@
+import { lazy, Suspense } from 'react';
+
+import { Loading } from '@/components/loading';
 import {
   ResizableHandle,
   ResizablePanel,
   ResizablePanelGroup,
 } from '@/components/ui/resizable';
 
-import { CodemirrorEditor, Footer, Header, Output } from './components';
+import { Footer, Header } from './components';
 import { useLayoutHandler } from './hooks/use-layout-handler';
 import EditorProviders from './providers';
 import { useSettingsStore } from './stores/settings';
+
+const Output = lazy(() => import('./components/output'));
+const CodemirrorEditor = lazy(() => import('./components/editor'));
 
 const Editor = () => {
   const { layout_direction } = useSettingsStore();
@@ -39,7 +45,9 @@ const Editor = () => {
               onCollapse={() => setIsVisiblePanelLeft(false)}
               onExpand={() => setIsVisiblePanelLeft(true)}
             >
-              <CodemirrorEditor />
+              <Suspense fallback={<Loading />}>
+                <CodemirrorEditor />
+              </Suspense>
             </ResizablePanel>
             <ResizableHandle withHandle className="hidden md:flex" />
             <ResizablePanel
@@ -50,7 +58,9 @@ const Editor = () => {
               onCollapse={() => setIsVisiblePanelRight(false)}
               onExpand={() => setIsVisiblePanelRight(true)}
             >
-              <Output />
+              <Suspense fallback={<Loading />}>
+                <Output />
+              </Suspense>
             </ResizablePanel>
           </ResizablePanelGroup>
         </section>

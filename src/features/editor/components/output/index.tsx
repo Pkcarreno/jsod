@@ -13,3 +13,5 @@ export const Output = () => {
     </>
   );
 };
+
+export default Output;
