@@ -1,5 +1,19 @@
 # Changelog
 
+## [1.4.0](https://github.com/Pkcarreno/jsod/compare/v1.3.4...v1.4.0) (2024-10-06)
+
+
+### Features
+
+* add embed option on share menu ([f47885c](https://github.com/Pkcarreno/jsod/commit/f47885c4339f5ca267f3350ff12f38bcfa2001b0))
+* **embeded:** make app embedable ([00258f0](https://github.com/Pkcarreno/jsod/commit/00258f0a8fe507296ed184c47074f1852d5bdaf8))
+
+
+### Bug Fixes
+
+* **output:** improve render value behavior ([81e6e13](https://github.com/Pkcarreno/jsod/commit/81e6e137640ed3b0c374cffbf31deee3162d9718))
+* **ui:** make dialog scrollable ([02f1d8e](https://github.com/Pkcarreno/jsod/commit/02f1d8e7274e8f85663c44b25a5a9233e8b2a5f2))
+
 ## [1.3.4](https://github.com/Pkcarreno/jsod/compare/v1.3.3...v1.3.4) (2024-09-05)
 
 
