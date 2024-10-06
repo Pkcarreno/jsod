@@ -2,8 +2,9 @@ import React, { useEffect } from 'react';
 
 import { useUntrustedMode } from '@/features/editor/hooks/use-untrusted-mode';
 import { useCodeStore } from '@/features/editor/stores/editor';
-import { stopJs } from '@/features/editor/utils/runtime';
 import useBeforeUnload from '@/hooks/use-before-unload';
+
+import { stopJs } from '../../utils/engine/controller';
 
 interface Props {
   children: React.ReactNode;

@@ -1,8 +1,10 @@
 import { Separator } from '@radix-ui/react-separator';
+import { useMemo } from 'react';
 
 import { ActionButtons } from './action-buttons';
 import { AutorunToggler } from './autorun-toggler';
 import { MainMenu } from './main-menu';
+import { OpenInSite } from './open-in-site';
 import { SharingMenu } from './sharing-menu';
 import {
   BottomHeaderUntrustedModeSign,
@@ -10,6 +12,8 @@ import {
 } from './untrusted-mode-sign';
 
 export const Header = () => {
+  const isIframe = useMemo(() => window.self !== window.top, []);
+
   return (
     <>
       <header className="flex w-full flex-wrap justify-between px-4 py-2">
@@ -22,7 +26,8 @@ export const Header = () => {
         </div>
 
         <div className="flex flex-1 flex-wrap justify-end gap-3">
-          <SharingMenu />
+          {isIframe && <OpenInSite />}
+          {!isIframe && <SharingMenu />}
           <AutorunToggler />
           <ActionButtons />
         </div>

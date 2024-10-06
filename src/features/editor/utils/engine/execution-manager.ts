@@ -7,8 +7,8 @@ import type {
   SystemError,
 } from '@/features/editor/types';
 
-import { disposeQuickJS, executeCode } from './execute-js';
-import { rfdc } from './rfdc';
+import { rfdc } from './../rfdc';
+import { disposeQuickJS, executeCode } from './runtime';
 
 let startTimeRef: number | undefined;
 

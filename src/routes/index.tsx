@@ -14,7 +14,13 @@ const Router = () => {
   });
 
   return (
-    <Suspense fallback={<Loading />}>
+    <Suspense
+      fallback={
+        <div className="h-screen w-screen">
+          <Loading />
+        </div>
+      }
+    >
       <WRouter base={BASE_URL}>
         <Switch>
           {pageRoutes}

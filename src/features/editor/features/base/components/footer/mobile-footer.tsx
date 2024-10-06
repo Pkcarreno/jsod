@@ -1,8 +1,12 @@
 import { CodeIcon, ListBulletIcon } from '@radix-ui/react-icons';
 import React from 'react';
 
-import { useLogsStore } from '../../stores/editor';
-import { BottomTabsContainer, BottomTabsTab } from '../ui/bottom-tabs';
+import {
+  BottomTabsContainer,
+  BottomTabsTab,
+} from '@/features/editor/components/ui/bottom-tabs';
+import { useLogsStore } from '@/features/editor/stores/editor';
+
 import type { FooterProps } from './types';
 
 interface Props

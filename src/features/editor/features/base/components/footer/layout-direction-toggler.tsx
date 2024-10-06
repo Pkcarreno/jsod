@@ -7,8 +7,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from '@/components/ui/tooltip';
-
-import { useSettingsStore } from '../../stores/settings';
+import { useSettingsStore } from '@/features/editor/stores/settings';
 
 export const LayoutDirectionToggler = () => {
   const { layout_direction, updateLayoutDirection } = useSettingsStore();

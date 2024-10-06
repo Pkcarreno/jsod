@@ -3,9 +3,9 @@ import { Separator } from '@radix-ui/react-separator';
 import React from 'react';
 
 import { Button } from '@/components/ui/button';
+import { useHelp } from '@/features/editor/hooks/use-help';
 import { cn } from '@/lib/utils';
 
-import { useHelp } from '../../hooks/use-help';
 import { LayoutDirectionToggler } from './layout-direction-toggler';
 import type { FooterProps } from './types';
 

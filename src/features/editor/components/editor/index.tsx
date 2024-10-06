@@ -1,12 +1,7 @@
-import { esLint, javascript } from '@codemirror/lang-javascript';
-import { linter, lintGutter } from '@codemirror/lint';
-import { basicSetup } from '@uiw/codemirror-extensions-basic-setup';
 import type { ReactCodeMirrorProps } from '@uiw/react-codemirror';
-import CodeMirror from '@uiw/react-codemirror';
-import * as eslint from 'eslint-linter-browserify';
-import { worker as globalsWorker } from 'globals';
-import { useMemo, useRef } from 'react';
+import { lazy, Suspense, useEffect, useMemo, useRef, useState } from 'react';
 
+import { Loading } from '@/components/loading';
 import { useTheme } from '@/hooks/use-theme';
 import { debounce } from '@/lib/debounce';
 
@@ -14,45 +9,34 @@ import { useUntrustedMode } from '../../hooks/use-untrusted-mode';
 import { useCodeStore } from '../../stores/editor';
 import { themeInit } from './theme';
 
+const CodeMirror = lazy(() => import('@uiw/react-codemirror'));
+
 const darkTheme = themeInit({ theme: 'dark' });
 const lightTheme = themeInit({ theme: 'light' });
-
-const EsLintConfig = {
-  languageOptions: {
-    globals: {
-      ...globalsWorker,
-      console: true,
-    },
-    parserOptions: {
-      ecmaVersion: 2023,
-      sourceType: 'module',
-    },
-  },
-  rules: {
-    semi: ['error', 'never'],
-  },
-};
-
-const extensions: ReactCodeMirrorProps['extensions'] = [
-  basicSetup({
-    foldGutter: false,
-    dropCursor: false,
-    allowMultipleSelections: true,
-    indentOnInput: true,
-    autocompletion: true,
-    closeBrackets: true,
-    bracketMatching: true,
-  }),
-  javascript(),
-  lintGutter(),
-  linter(esLint(new eslint.Linter(), EsLintConfig)),
-];
 
 export const CodemirrorEditor = () => {
   const { themeMode } = useTheme();
   const { code, setCode } = useCodeStore();
   const { isUntrustedMode, isUnedited, setUnedited } = useUntrustedMode();
   const codeRef = useRef<string | null>(null);
+  const [extensions, setExtensions] = useState<
+    ReactCodeMirrorProps['extensions']
+  >([]);
+
+  const getMemoExtensions = useMemo(async () => {
+    const lib = await import('./cm-extensions');
+    const res = await lib.getExtensions();
+    return res;
+  }, []);
+
+  const loadExtensions = async () => {
+    const ext = await getMemoExtensions;
+    setExtensions(ext);
+  };
+
+  useEffect(() => {
+    loadExtensions();
+  }, []);
 
   codeRef.current = code;
 
@@ -77,17 +61,21 @@ export const CodemirrorEditor = () => {
   }, [themeMode]);
 
   return (
-    <CodeMirror
-      value={codeRef.current ?? ''}
-      theme={getCurrentTheme}
-      lang="javascript"
-      height="100%"
-      style={{ height: '100%', overflow: 'auto', fontSize: '.9rem' }}
-      readOnly={isUntrustedMode}
-      extensions={extensions}
-      onChange={handleEditorChange}
-      spellCheck={false}
-      translate="no"
-    />
+    <Suspense fallback={<Loading />}>
+      <CodeMirror
+        value={codeRef.current ?? ''}
+        theme={getCurrentTheme}
+        lang="javascript"
+        height="100%"
+        style={{ height: '100%', overflow: 'auto', fontSize: '.9rem' }}
+        readOnly={isUntrustedMode}
+        extensions={extensions}
+        onChange={handleEditorChange}
+        spellCheck={false}
+        translate="no"
+      />
+    </Suspense>
   );
 };
+
+export default CodemirrorEditor;
