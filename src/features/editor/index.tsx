@@ -1,77 +1,37 @@
-import { lazy, Suspense } from 'react';
+import { lazy, Suspense, useMemo } from 'react';
 
 import { Loading } from '@/components/loading';
-import {
-  ResizableHandle,
-  ResizablePanel,
-  ResizablePanelGroup,
-} from '@/components/ui/resizable';
 
-import { Footer, Header } from './components';
-import { useLayoutHandler } from './hooks/use-layout-handler';
-import EditorProviders from './providers';
-import { useSettingsStore } from './stores/settings';
-
-const Output = lazy(() => import('./components/output'));
-const CodemirrorEditor = lazy(() => import('./components/editor'));
+const BaseEditor = lazy(() => import('./features/base'));
+const EmbededEditor = lazy(() => import('./features/embeded'));
 
 const Editor = () => {
-  const { layout_direction } = useSettingsStore();
-  const {
-    isVisiblePanelLeft,
-    setIsVisiblePanelLeft,
-    isVisiblePanelRight,
-    setIsVisiblePanelRight,
-    panelLeftRef,
-    panelRightRef,
-    handleOpenRight,
-    handleOpenLeft,
-  } = useLayoutHandler();
+  const isIframe = useMemo(() => window.self !== window.top, []);
+
+  if (isIframe) {
+    return (
+      <Suspense
+        fallback={
+          <div className="h-screen w-screen">
+            <Loading />
+          </div>
+        }
+      >
+        <EmbededEditor />
+      </Suspense>
+    );
+  }
 
   return (
-    <EditorProviders>
-      <main className="flex h-dvh flex-col font-sans">
-        <Header />
-        <section className="h-full overflow-auto">
-          <ResizablePanelGroup
-            autoSaveId="persistence"
-            direction={layout_direction}
-          >
-            <ResizablePanel
-              ref={panelLeftRef}
-              collapsible={true}
-              collapsedSize={0}
-              minSize={14}
-              onCollapse={() => setIsVisiblePanelLeft(false)}
-              onExpand={() => setIsVisiblePanelLeft(true)}
-            >
-              <Suspense fallback={<Loading />}>
-                <CodemirrorEditor />
-              </Suspense>
-            </ResizablePanel>
-            <ResizableHandle withHandle className="hidden md:flex" />
-            <ResizablePanel
-              ref={panelRightRef}
-              collapsible={true}
-              collapsedSize={0}
-              minSize={14}
-              onCollapse={() => setIsVisiblePanelRight(false)}
-              onExpand={() => setIsVisiblePanelRight(true)}
-            >
-              <Suspense fallback={<Loading />}>
-                <Output />
-              </Suspense>
-            </ResizablePanel>
-          </ResizablePanelGroup>
-        </section>
-        <Footer
-          onLeftClick={handleOpenLeft}
-          isLeftActive={isVisiblePanelLeft}
-          onRightClick={handleOpenRight}
-          isRightActive={isVisiblePanelRight}
-        />
-      </main>
-    </EditorProviders>
+    <Suspense
+      fallback={
+        <div className="h-screen w-screen">
+          <Loading />
+        </div>
+      }
+    >
+      <BaseEditor />
+    </Suspense>
   );
 };
 
