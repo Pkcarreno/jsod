@@ -5,62 +5,40 @@ import type { Loggable } from '@/features/editor/types';
 import { JsonView } from './json-view-wrapper';
 
 interface Props {
-  value: Loggable;
+  value: Loggable | Record<string, Loggable>;
+  topLevel?: boolean;
 }
 
-export const FormatOutput: React.FC<Props> = ({ value }) => {
+export const FormatOutput: React.FC<Props> = ({ value, topLevel = true }) => {
+  if (typeof value === 'string' && value === '') {
+    return <span className="text-muted italic">empty</span>;
+  }
+
+  if (Array.isArray(value) && topLevel) {
+    return value.map((subValue, index) => (
+      <FormatOutput key={index} value={subValue} topLevel={false} />
+    ));
+  }
+
   if (typeof value === 'string') {
     return <span className="whitespace-pre-wrap break-all">{value}</span>;
   }
 
-  if (value && Array.isArray(value) && value.length > 0) {
-    return value.map((subValue, index) => {
-      if (subValue && typeof subValue === 'string') {
-        return (
-          <div key={`string-${index}`} className="w-fit">
-            <span className="whitespace-pre-wrap break-all">{subValue}</span>
-          </div>
-        );
-      }
-
-      if (subValue && typeof subValue === 'number') {
-        return (
-          <div key={`number-${index}`}>
-            <span className="w-fit text-[var(--w-rjv-key-number)]">
-              {subValue}
-            </span>
-          </div>
-        );
-      }
-
-      if (
-        subValue &&
-        (typeof subValue === 'object' || Array.isArray(subValue))
-      ) {
-        return (
-          <div key={`object-${index}`} className="w-fit">
-            <JsonView value={subValue} />
-          </div>
-        );
-      }
-    });
+  if (typeof value === 'number') {
+    return <span className="w-fit text-[hsl(var(--yell))]">{value}</span>;
   }
 
   if (value && (typeof value === 'object' || Array.isArray(value))) {
     return (
-      <div className="w-fit">
+      <div className="my-auto w-fit">
         <JsonView value={value} />
       </div>
     );
   }
 
-  if (value && Array.isArray(value) && value.length === 0) {
-    return (
-      <div>
-        <span className="text-muted-foreground italic">empty</span>
-      </div>
-    );
+  if (!value) {
+    return <span className="text-muted w-fit">{String(value)}</span>;
   }
 
-  // return <>{value}</>;
+  return <span>{String(value)}</span>;
 };
