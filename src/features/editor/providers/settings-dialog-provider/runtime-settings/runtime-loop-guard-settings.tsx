@@ -24,7 +24,7 @@ export const RuntimeLoopGuardSettings = () => {
   loopSafeguardTimeoutRef.current = loop_safeguard_timeout;
 
   const LOOP_THRESHOLD_INTERVAL = 10;
-  const LOOP_TIMEOUT_INTERVAL = 5;
+  const LOOP_TIMEOUT_INTERVAL = 5000;
 
   const handleLoopThresholdModifier = (delta: number) => {
     updateLoopSafeguardThreshold(loopSafeguardThresholdRef.current + delta);
