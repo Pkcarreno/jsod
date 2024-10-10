@@ -6,7 +6,10 @@ import type {
 } from '@/features/editor/types';
 
 import { appendLogs } from '../../stores/editor';
-import { SettingsLoopSafeguardTimeout } from '../../stores/settings';
+import {
+  SettingsLoopSafeguardThreshold,
+  SettingsLoopSafeguardTimeout,
+} from '../../stores/settings';
 
 let workerRef: Worker | undefined = undefined;
 let timeoutIdRef: ReturnType<typeof setInterval> | undefined = undefined;
@@ -90,6 +93,12 @@ export function runJs(code: string) {
     };
 
     console.log('apunto de ejecutar al worker');
-    workerPostMessage()({ command: 'run', code: code });
+    workerPostMessage()({
+      command: 'run',
+      code: code,
+      options: {
+        loopThreshold: SettingsLoopSafeguardThreshold(),
+      },
+    });
   });
 }

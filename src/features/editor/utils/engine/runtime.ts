@@ -2,7 +2,11 @@
 import type { QuickJSContext } from 'quickjs-emscripten-core';
 import { Arena } from 'quickjs-emscripten-sync';
 
-import type { Loggable, SystemError } from '../../types';
+import type {
+  Loggable,
+  remoteControlerInsideWorkerOptions,
+  SystemError,
+} from '../../types';
 import { getQuickJS } from '../quick-js';
 
 let arenaRef: Arena;
@@ -57,18 +61,20 @@ type executeCodeOutputTypes =
       data: SystemError;
     };
 
+interface executeCodeOptionsProps extends remoteControlerInsideWorkerOptions {
+  exposeGlobals: Record<string, unknown>;
+  startTimer: () => void;
+}
+
 interface executeCodeProps {
   code: string;
-  options: {
-    exposeGlobals: Record<string, unknown>;
-    startTimer: () => void;
-  };
+  options: executeCodeOptionsProps;
 }
 
 export const executeCode: (
   data: executeCodeProps,
 ) => Promise<executeCodeOutputTypes> = async ({ code, options }) => {
-  const { exposeGlobals, startTimer } = options;
+  const { exposeGlobals, startTimer, loopThreshold } = options;
 
   return new Promise(async (resolve, reject) => {
     try {
@@ -84,7 +90,7 @@ export const executeCode: (
       ctx.runtime.setMemoryLimit(1024 * 640);
       ctx.runtime.setMaxStackSize(1024 * 320);
       ctx.runtime.setInterruptHandler(() => {
-        return ++interruptCycles > 10;
+        return ++interruptCycles > loopThreshold;
       });
 
       const arena = new Arena(ctx, {

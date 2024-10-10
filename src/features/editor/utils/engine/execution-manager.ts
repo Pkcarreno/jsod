@@ -100,6 +100,7 @@ self.onmessage = async function ({
             options: {
               exposeGlobals: exposeGlobals,
               startTimer: startTimer,
+              loopThreshold: data.options.loopThreshold,
             },
           });
 

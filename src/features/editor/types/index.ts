@@ -67,10 +67,15 @@ export type remoteControlerOutsideWorker =
       data?: Loggable;
     };
 
+export type remoteControlerInsideWorkerOptions = {
+  loopThreshold: number;
+};
+
 export type remoteControlerInsideWorker =
   | {
       command: 'run';
       code: string;
+      options: remoteControlerInsideWorkerOptions;
     }
   | {
       command: 'dispose';
