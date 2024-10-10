@@ -28,7 +28,7 @@ const _useSettingsStore = create<SettingsState>()(
     (set) => ({
       auto_run: false,
       auto_run_timeout: 1500,
-      loop_safeguard_threshold: 10,
+      loop_safeguard_threshold: 1000,
       loop_safeguard_timeout: 30000,
       persist_logs: false,
       layout_direction: 'horizontal',
@@ -51,6 +51,7 @@ const _useSettingsStore = create<SettingsState>()(
       migrate: (persistedState, version) => {
         if (version === 0) {
           (persistedState as SettingsState).vimMode = false;
+          (persistedState as SettingsState).loop_safeguard_threshold = 1000;
         }
 
         return persistedState;
