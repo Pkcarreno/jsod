@@ -7,7 +7,9 @@ import {
   DialogHeader,
   DialogTitle,
 } from '@/components/ui/dialog';
+import { Separator } from '@/components/ui/separator';
 
+import { EditorSettings } from './editor';
 import { RuntimeSettings } from './runtime-settings';
 
 type SettingsDialogState = {
@@ -45,7 +47,10 @@ export const SettingsDialogProvider: React.FC<Props> = ({ children }) => {
             </DialogDescription>
           </DialogHeader>
 
+          <Separator />
           <RuntimeSettings />
+          <Separator />
+          <EditorSettings />
         </DialogContent>
       </Dialog>
     </SettingsDialogContext.Provider>

@@ -12,6 +12,7 @@ export interface SettingsState {
   persist_logs: boolean;
   layout_direction: PanelGroupProps['direction'];
   isFirstTime: boolean;
+  vimMode: boolean;
   updateAutoRun: (value: boolean) => void;
   updateAutoRunTimeout: (value: number) => void;
   updateLoopSafeguardThreshold: (value: number) => void;
@@ -19,6 +20,7 @@ export interface SettingsState {
   updatePersistLogs: (value: boolean) => void;
   updateLayoutDirection: (value: PanelGroupProps['direction']) => void;
   updateIsFirstTime: (value: boolean) => void;
+  updateVimMode: (value: boolean) => void;
 }
 
 const _useSettingsStore = create<SettingsState>()(
@@ -31,6 +33,7 @@ const _useSettingsStore = create<SettingsState>()(
       persist_logs: false,
       layout_direction: 'horizontal',
       isFirstTime: true,
+      vimMode: false,
       updateAutoRun: (value) => set({ auto_run: value }),
       updateAutoRunTimeout: (value) => set({ auto_run_timeout: value }),
       updateLoopSafeguardThreshold: (value) =>
@@ -40,9 +43,18 @@ const _useSettingsStore = create<SettingsState>()(
       updatePersistLogs: (value) => set({ persist_logs: value }),
       updateLayoutDirection: (value) => set({ layout_direction: value }),
       updateIsFirstTime: (value) => set({ isFirstTime: value }),
+      updateVimMode: (value) => set({ vimMode: value }),
     }),
     {
       name: 'settings-storage',
+      version: 1,
+      migrate: (persistedState, version) => {
+        if (version === 0) {
+          (persistedState as SettingsState).vimMode = false;
+        }
+
+        return persistedState;
+      },
     },
   ),
 );
