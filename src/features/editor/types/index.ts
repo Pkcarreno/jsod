@@ -69,6 +69,7 @@ export type remoteControlerOutsideWorker =
 
 export type remoteControlerInsideWorkerOptions = {
   loopThreshold: number;
+  debugMode: boolean;
 };
 
 export type remoteControlerInsideWorker =

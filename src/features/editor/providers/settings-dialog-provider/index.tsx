@@ -9,6 +9,7 @@ import {
 } from '@/components/ui/dialog';
 import { Separator } from '@/components/ui/separator';
 
+import { DevelopmentSettings } from './development';
 import { EditorSettings } from './editor';
 import { RuntimeSettings } from './runtime-settings';
 
@@ -51,6 +52,8 @@ export const SettingsDialogProvider: React.FC<Props> = ({ children }) => {
           <RuntimeSettings />
           <Separator />
           <EditorSettings />
+          <Separator />
+          <DevelopmentSettings />
         </DialogContent>
       </Dialog>
     </SettingsDialogContext.Provider>
