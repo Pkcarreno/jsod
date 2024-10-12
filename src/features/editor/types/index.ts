@@ -14,7 +14,8 @@ export type Loggable =
   | { error: string; stack: string }
   | (Record<string, Loggable> | undefined)[]
   | Loggable[]
-  | Error;
+  | Error
+  | baseErrorObj;
 
 export type baseErrorObj = {
   message: string;
@@ -22,40 +23,21 @@ export type baseErrorObj = {
   stack?: string;
   lineNumber?: string;
 };
+export type SystemError = string | SyntaxError | Error | baseErrorObj;
 
-export type SystemError =
-  | string
-  | SyntaxError
-  | Error
-  | {
-      message: string;
-      name: string;
-      stack: string;
-    };
-
-type baseLog = {
+export type Log = {
+  internalError?: boolean;
+  type: consoleAvailableHandlers;
   duration: number;
   repeats: number;
-};
-
-type baseConsoleOutput = {
-  type: consoleAvailableHandlers;
   value: Loggable;
+  detail?: string;
 };
-
-export type consoleOutput = baseConsoleOutput | consoleOutputSystemError;
-type consoleOutputSystemError = {
-  type: 'systemError';
-  value: SystemError;
-};
-
-export type log = consoleOutput & baseLog;
-export type logWithoutSystemError = baseConsoleOutput & baseLog;
 
 export type remoteControlerOutsideWorker =
   | {
       command: 'log';
-      data: Pick<logWithoutSystemError, 'type' | 'value' | 'duration'>;
+      data: Pick<Log, 'type' | 'value' | 'duration'>;
     }
   | {
       command: 'error';

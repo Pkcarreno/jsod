@@ -1,5 +1,5 @@
 import type {
-  logWithoutSystemError,
+  Log,
   remoteControlerInsideWorker,
   remoteControlerOutsideWorker,
   SystemError,
@@ -41,6 +41,7 @@ export function runJs(code: string) {
 
   DEBUG = debugMode ? DebugLog : DebugLogVoid;
 
+  // eslint-disable-next-line max-lines-per-function
   return new Promise((resolve, reject) => {
     const worker = new Worker(
       new URL('./execution-manager.ts', import.meta.url),
@@ -52,17 +53,17 @@ export function runJs(code: string) {
 
     const logError = (message: SystemError, duration: number = 0) => {
       appendLogs({
-        type: 'systemError',
+        internalError: true,
+        type: 'error',
         value: message,
         duration: duration,
         repeats: 1,
       });
     };
 
-    const logger = (
-      log: Pick<logWithoutSystemError, 'type' | 'value' | 'duration'>,
-    ) => {
+    const logger = (log: Pick<Log, 'type' | 'value' | 'duration'>) => {
       appendLogs({
+        internalError: false,
         type: log.type,
         value: log.value,
         duration: log.duration,
@@ -72,7 +73,10 @@ export function runJs(code: string) {
 
     timeoutIdRef = setTimeout(() => {
       stopJs();
-      logError('Process terminated to avoid infinite loop');
+      logError({
+        name: 'InternalError',
+        message: 'timeout',
+      });
 
       const executionTime = Date.now() - startTime;
       reject(new Error(`Execution timed out after ${executionTime}ms`));
