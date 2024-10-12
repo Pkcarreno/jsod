@@ -1,5 +1,23 @@
 # Changelog
 
+## [1.5.0](https://github.com/Pkcarreno/jsod/compare/v1.4.0...v1.5.0) (2024-10-12)
+
+
+### Features
+
+* **editor:** vim motions ([1ed8e1d](https://github.com/Pkcarreno/jsod/commit/1ed8e1dcff5ce8307f1c1d44b6d4efa5cb5d334e))
+* **log:** add debug mode ([c3f1765](https://github.com/Pkcarreno/jsod/commit/c3f1765c2962a58e1b2519e7fdc45e57a14e3929))
+* **output:** rework output workflow ([c2de00b](https://github.com/Pkcarreno/jsod/commit/c2de00b43c8f00c510bdf31b693e1c70c67cce68))
+
+
+### Bug Fixes
+
+* **engine:** insert loop threshold in runtime ([ebfeec8](https://github.com/Pkcarreno/jsod/commit/ebfeec8aaa0748e55d5b651db6c2d47b5275ceff))
+* **settings:** increase loop threshold interval ([b04e18d](https://github.com/Pkcarreno/jsod/commit/b04e18d8da5346b00ddb98412850a87e34662386))
+* **settings:** increase runtime timeout interval ([05fcaef](https://github.com/Pkcarreno/jsod/commit/05fcaeff7b5e49a05e8cfd02f0a99dc148edd44d))
+* **settings:** update loop threshold defaults ([798d1c9](https://github.com/Pkcarreno/jsod/commit/798d1c97a7bc7b25e7e475084688eb41037562fe))
+* **ui:** tab inactive illegible on dark mode ([c1c9230](https://github.com/Pkcarreno/jsod/commit/c1c9230b4cd5bcb34057acfc1a19ab727d085c15))
+
 ## [1.4.0](https://github.com/Pkcarreno/jsod/compare/v1.3.4...v1.4.0) (2024-10-06)
 
 
