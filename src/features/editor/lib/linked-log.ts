@@ -1,27 +1,29 @@
 import DeepEqual from 'deep-equal';
 
-import type { log } from '../types';
+import type { Log } from '../types';
+import { addLogDecorators } from '../utils/log-decorator';
 
 class LogNode {
   public next: LogNode | null = null;
-  public value: log;
+  public value: Log;
 
-  constructor(data: log) {
+  constructor(data: Log) {
     this.value = data;
   }
 }
 
 interface ILinkedLogs {
-  append(data: log): void;
+  append(data: Log): void;
   clearFirst(): void;
-  getAllLogsInArray(): log[];
+  getAllLogsInArray(): Log[];
 }
 
 class LinkedLogs implements ILinkedLogs {
   private head: LogNode | null = null;
 
-  append(data: log) {
-    const node = new LogNode(data);
+  append(data: Log) {
+    const decoratedData = addLogDecorators(data);
+    const node = new LogNode(decoratedData);
 
     if (!this.head) {
       this.head = node;
@@ -33,11 +35,11 @@ class LinkedLogs implements ILinkedLogs {
       const lastNode = getLast(this.head);
 
       if (
-        lastNode.value.type === data.type &&
-        DeepEqual(lastNode.value.value, data.value)
+        lastNode.value.type === decoratedData.type &&
+        DeepEqual(lastNode.value.value, decoratedData.value)
       ) {
         lastNode.value.repeats += 1;
-        lastNode.value.duration = data.duration;
+        lastNode.value.duration = decoratedData.duration;
       } else {
         lastNode.next = node;
       }
@@ -48,8 +50,8 @@ class LinkedLogs implements ILinkedLogs {
     this.head = null;
   }
 
-  getAllLogsInArray(): log[] {
-    const array: log[] = [];
+  getAllLogsInArray(): Log[] {
+    const array: Log[] = [];
     let currentNode: LogNode | null = this.head;
 
     while (currentNode) {

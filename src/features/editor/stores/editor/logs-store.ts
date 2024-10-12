@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 
-import type { log } from '@/features/editor/types';
+import type { Log } from '@/features/editor/types';
 import { createSelectors } from '@/lib/utils';
 
 import LinkedLogs from '../../lib/linked-log';
@@ -8,10 +8,10 @@ import LinkedLogs from '../../lib/linked-log';
 const logsList = new LinkedLogs();
 
 interface LogsState {
-  logs: log[];
+  logs: Log[];
   isFirstTime: boolean;
   alert: boolean;
-  appendLogs: (logs: log) => void;
+  appendLogs: (logs: Log) => void;
   clearLogs: () => void;
   clearAlert: () => void;
 }
@@ -20,7 +20,7 @@ const _useLogsStore = create<LogsState>((set) => ({
   logs: [],
   isFirstTime: true,
   alert: false,
-  appendLogs: (log: log) => {
+  appendLogs: (log: Log) => {
     logsList.append(log);
     set({
       logs: logsList.getAllLogsInArray(),
@@ -39,5 +39,5 @@ const _useLogsStore = create<LogsState>((set) => ({
 
 export const useLogsStore = createSelectors(_useLogsStore);
 
-export const appendLogs = (log: log) =>
+export const appendLogs = (log: Log) =>
   _useLogsStore.getState().appendLogs(log);

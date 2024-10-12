@@ -7,7 +7,7 @@ import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 
 import { useLogsStore } from '../../stores/editor';
-import { LogRenderer } from './log-renderer';
+import { LogItem } from './log-item';
 
 const EmptyListView = () => (
   <div className="flex h-full flex-1 items-center justify-center gap-1">
@@ -23,6 +23,7 @@ const EmptyListFirstTimeView = () => (
   </div>
 );
 
+// eslint-disable-next-line max-lines-per-function
 export const LogsList = () => {
   const virtuosoRef = useRef<VirtuosoHandle>(null);
   const { logs, isFirstTime } = useLogsStore();
@@ -68,7 +69,16 @@ export const LogsList = () => {
         data={logs}
         atBottomStateChange={setAtBottom}
         itemContent={(index, log) => {
-          return <LogRenderer key={index} log={log} />;
+          return (
+            <LogItem
+              key={index}
+              type={log.type}
+              value={log.value}
+              repeats={log.repeats}
+              duration={log.duration}
+              details={log.detail}
+            />
+          );
         }}
         followOutput={'auto'}
       />

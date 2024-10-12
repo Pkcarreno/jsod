@@ -11,11 +11,7 @@ import React from 'react';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { CONSOLE_AVAILABLE_HANDLERS } from '@/features/editor/config/constants';
-import type {
-  consoleOutput,
-  Loggable,
-  SystemError,
-} from '@/features/editor/types';
+import type { Log, Loggable, SystemError } from '@/features/editor/types';
 import { cn } from '@/lib/utils';
 
 import { FormatOutput } from './format-output';
@@ -56,7 +52,10 @@ const Container: React.FC<ContainerProps> = ({
   ...props
 }) => {
   return (
-    <div className={cn(containerVariants({ variant, className }))} {...props}>
+    <div
+      className={cn('py-0.5', containerVariants({ variant, className }))}
+      {...props}
+    >
       {children}
     </div>
   );
@@ -115,7 +114,7 @@ const Value: React.FC<ValueProps> = ({ variant, value, repeats, duration }) => {
 };
 
 interface Props {
-  type: consoleOutput['type'];
+  type: Log['type'];
   value: Loggable | SystemError;
   repeats: number;
   duration: number;
@@ -131,14 +130,12 @@ export const LogItem: React.FC<Props> = ({
 }) => {
   const isDetailsString = typeof details === 'string';
 
-  const consoleAvailableHandlersAsString: readonly consoleOutput['type'][] = [
-    ...CONSOLE_AVAILABLE_HANDLERS,
-    'systemError',
-  ];
+  const consoleAvailableHandlersAsString: readonly Log['type'][] =
+    CONSOLE_AVAILABLE_HANDLERS;
   const isVariantTypeSupported =
     !!consoleAvailableHandlersAsString.includes(type);
 
-  const variantType: consoleOutput['type'] | 'default' = isVariantTypeSupported
+  const variantType: Log['type'] | 'default' = isVariantTypeSupported
     ? type
     : 'default';
 

@@ -19,6 +19,24 @@ It's:
 >
 > Although JSOD aims to provide a safe environment, there may be inappropriate or malicious behavior when executing third-party code.
 
+## Motivation
+
+I wanted to have a tool where I could create and run JS code with no extra friction, no text editors, no login screens, no opening the browser console. Plus, I wanted my code to not run on an external server and to be able to share my creations with others privately.
+
+JSOD is a super flexible calculator if you already know JS. You can do data manipulation without having to start your development environment, great for testing logic as you create. Or you can even create a calculator tailored to your needs and share it with your friends or embed it in your web page as a demo.
+
+## Limitations
+
+For JavaScript execution, [QuickJS-NG](https://quickjs-ng.github.io/quickjs/) is used via [quickjs-emscripten](https://github.com/justjake/quickjs-emscripten). QuickJS-NG aims to be compatible with the latest ECMAScript specifications (for reference, [here you can see the progress of these features](https://quickjs-ng.github.io/quickjs/es_features)).
+
+As for the APIs provided by the environment (browser/Node.js) they depend on the implementation of **quickjs-emscripten** in the project and is currently work in progress. Below is the list of priority APIs to be integrated:
+
+- [ ] fetch
+- [ ] timeout
+- [ ] interval
+
+Note: You can open an issue and suggest any other API you consider necessary.
+
 ## Folder Structure
 
 Follow [Bulletproof-react project structure](https://github.com/alan2207/bulletproof-react/blob/master/docs/project-structure.md).

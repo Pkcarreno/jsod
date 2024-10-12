@@ -1,5 +1,6 @@
 import { esLint, javascript } from '@codemirror/lang-javascript';
 import { linter, lintGutter } from '@codemirror/lint';
+import { vim } from '@replit/codemirror-vim';
 import { basicSetup } from '@uiw/codemirror-extensions-basic-setup';
 import type { ReactCodeMirrorProps } from '@uiw/react-codemirror';
 import { worker as globalsWorker } from 'globals';
@@ -25,7 +26,11 @@ const newLinter = async () => {
   return new eslint.Linter();
 };
 
-export const getExtensions = async () => {
+interface getExtensionsProps {
+  vimMode: boolean;
+}
+
+export const getExtensions = async (props: getExtensionsProps) => {
   const extensions: ReactCodeMirrorProps['extensions'] = [
     basicSetup({
       foldGutter: false,
@@ -40,6 +45,10 @@ export const getExtensions = async () => {
     lintGutter(),
     linter(esLint(await newLinter(), EsLintConfig)),
   ];
+
+  if (props?.vimMode) {
+    extensions.unshift(vim());
+  }
 
   return extensions;
 };

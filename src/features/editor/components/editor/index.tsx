@@ -7,6 +7,7 @@ import { debounce } from '@/lib/debounce';
 
 import { useUntrustedMode } from '../../hooks/use-untrusted-mode';
 import { useCodeStore } from '../../stores/editor';
+import { useSettingsStore } from '../../stores/settings';
 import { themeInit } from './theme';
 
 const CodeMirror = lazy(() => import('@uiw/react-codemirror'));
@@ -17,6 +18,7 @@ const lightTheme = themeInit({ theme: 'light' });
 export const CodemirrorEditor = () => {
   const { themeMode } = useTheme();
   const { code, setCode } = useCodeStore();
+  const { vimMode } = useSettingsStore();
   const { isUntrustedMode, isUnedited, setUnedited } = useUntrustedMode();
   const codeRef = useRef<string | null>(null);
   const [extensions, setExtensions] = useState<
@@ -25,9 +27,11 @@ export const CodemirrorEditor = () => {
 
   const getMemoExtensions = useMemo(async () => {
     const lib = await import('./cm-extensions');
-    const res = await lib.getExtensions();
+    const res = await lib.getExtensions({
+      vimMode,
+    });
     return res;
-  }, []);
+  }, [vimMode]);
 
   const loadExtensions = async () => {
     const ext = await getMemoExtensions;
@@ -36,7 +40,7 @@ export const CodemirrorEditor = () => {
 
   useEffect(() => {
     loadExtensions();
-  }, []);
+  }, [vimMode]);
 
   codeRef.current = code;
 

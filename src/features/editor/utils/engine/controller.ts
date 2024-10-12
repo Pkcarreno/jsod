@@ -1,21 +1,28 @@
 import type {
-  logWithoutSystemError,
+  Log,
   remoteControlerInsideWorker,
   remoteControlerOutsideWorker,
   SystemError,
 } from '@/features/editor/types';
 
 import { appendLogs } from '../../stores/editor';
-import { SettingsLoopSafeguardTimeout } from '../../stores/settings';
+import {
+  SettingsDebugMode,
+  SettingsLoopSafeguardThreshold,
+  SettingsLoopSafeguardTimeout,
+} from '../../stores/settings';
+import { DebugLog, DebugLogVoid } from '../debug';
 
 let workerRef: Worker | undefined = undefined;
 let timeoutIdRef: ReturnType<typeof setInterval> | undefined = undefined;
+let DEBUG = DebugLogVoid;
 
 const workerPostMessage: () => (params: remoteControlerInsideWorker) => void =
   () => (params) =>
     workerRef && (workerRef as Worker).postMessage(params);
 
 export function stopJs() {
+  DEBUG('stop execution');
   if (workerRef) {
     workerPostMessage()({ command: 'dispose' });
     workerRef.terminate();
@@ -27,9 +34,14 @@ export function stopJs() {
   return true;
 }
 
+// eslint-disable-next-line max-lines-per-function
 export function runJs(code: string) {
   const startTime = Date.now();
+  const debugMode = SettingsDebugMode();
 
+  DEBUG = debugMode ? DebugLog : DebugLogVoid;
+
+  // eslint-disable-next-line max-lines-per-function
   return new Promise((resolve, reject) => {
     const worker = new Worker(
       new URL('./execution-manager.ts', import.meta.url),
@@ -41,17 +53,17 @@ export function runJs(code: string) {
 
     const logError = (message: SystemError, duration: number = 0) => {
       appendLogs({
-        type: 'systemError',
+        internalError: true,
+        type: 'error',
         value: message,
         duration: duration,
         repeats: 1,
       });
     };
 
-    const logger = (
-      log: Pick<logWithoutSystemError, 'type' | 'value' | 'duration'>,
-    ) => {
+    const logger = (log: Pick<Log, 'type' | 'value' | 'duration'>) => {
       appendLogs({
+        internalError: false,
         type: log.type,
         value: log.value,
         duration: log.duration,
@@ -61,7 +73,10 @@ export function runJs(code: string) {
 
     timeoutIdRef = setTimeout(() => {
       stopJs();
-      logError('Process terminated to avoid infinite loop');
+      logError({
+        name: 'InternalError',
+        message: 'timeout',
+      });
 
       const executionTime = Date.now() - startTime;
       reject(new Error(`Execution timed out after ${executionTime}ms`));
@@ -77,7 +92,12 @@ export function runJs(code: string) {
           logger(data.data);
           break;
         case 'error':
-          console.log('data:', data.data, 'duration:', data.duration);
+          DEBUG(
+            'returning error. data:',
+            data.data,
+            'duration:',
+            data.duration,
+          );
           logError(data.data, data.duration);
           stopJs();
           reject(data.data);
@@ -89,7 +109,14 @@ export function runJs(code: string) {
       }
     };
 
-    console.log('apunto de ejecutar al worker');
-    workerPostMessage()({ command: 'run', code: code });
+    DEBUG('Start Execution');
+    workerPostMessage()({
+      command: 'run',
+      code: code,
+      options: {
+        loopThreshold: SettingsLoopSafeguardThreshold(),
+        debugMode,
+      },
+    });
   });
 }

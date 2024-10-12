@@ -2,14 +2,21 @@
 import type { QuickJSContext } from 'quickjs-emscripten-core';
 import { Arena } from 'quickjs-emscripten-sync';
 
-import type { Loggable, SystemError } from '../../types';
+import type {
+  Loggable,
+  remoteControlerInsideWorkerOptions,
+  SystemError,
+} from '../../types';
+import { DebugLog, DebugLogVoid } from '../debug';
 import { getQuickJS } from '../quick-js';
 
 let arenaRef: Arena;
 let ctxRef: QuickJSContext;
 
+let DEBUG = DebugLogVoid;
+
 export const disposeQuickJS = () => {
-  console.log('dispose arena and ctx');
+  DEBUG('dispose arena and ctx');
   if (arenaRef) {
     arenaRef.dispose();
   }
@@ -57,22 +64,26 @@ type executeCodeOutputTypes =
       data: SystemError;
     };
 
+interface executeCodeOptionsProps extends remoteControlerInsideWorkerOptions {
+  exposeGlobals: Record<string, unknown>;
+  startTimer: () => void;
+}
+
 interface executeCodeProps {
   code: string;
-  options: {
-    exposeGlobals: Record<string, unknown>;
-    startTimer: () => void;
-  };
+  options: executeCodeOptionsProps;
 }
 
 export const executeCode: (
   data: executeCodeProps,
 ) => Promise<executeCodeOutputTypes> = async ({ code, options }) => {
-  const { exposeGlobals, startTimer } = options;
+  const { exposeGlobals, startTimer, loopThreshold, debugMode } = options;
+
+  DEBUG = debugMode ? DebugLog : DebugLogVoid;
 
   return new Promise(async (resolve, reject) => {
     try {
-      console.log('start eval');
+      DEBUG('start eval');
       const ctx = await getQuickJS().then((deps) => {
         return deps.newContext();
       });
@@ -84,7 +95,8 @@ export const executeCode: (
       ctx.runtime.setMemoryLimit(1024 * 640);
       ctx.runtime.setMaxStackSize(1024 * 320);
       ctx.runtime.setInterruptHandler(() => {
-        return ++interruptCycles > 10;
+        DEBUG('interrupt handler triggered. time: ', interruptCycles);
+        return ++interruptCycles > loopThreshold;
       });
 
       const arena = new Arena(ctx, {
@@ -92,20 +104,20 @@ export const executeCode: (
       });
       arenaRef = arena;
 
-      console.log('expose functions');
+      DEBUG('expose functions');
       arena.expose(exposeGlobals);
 
-      console.log('eval the code');
+      DEBUG('eval the code');
       startTimer();
       const result = await arena.evalCode(code);
 
-      console.log('execute pending jobs');
+      DEBUG('execute pending jobs');
       arena.executePendingJobs();
 
       let error = undefined;
       let success = undefined;
 
-      console.log('check output status', result);
+      DEBUG('check output status', result);
       if (result) {
         if (result.error) {
           error = ctx.dump(result.error);

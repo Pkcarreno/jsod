@@ -12,6 +12,8 @@ export interface SettingsState {
   persist_logs: boolean;
   layout_direction: PanelGroupProps['direction'];
   isFirstTime: boolean;
+  vimMode: boolean;
+  debugMode: boolean;
   updateAutoRun: (value: boolean) => void;
   updateAutoRunTimeout: (value: number) => void;
   updateLoopSafeguardThreshold: (value: number) => void;
@@ -19,6 +21,8 @@ export interface SettingsState {
   updatePersistLogs: (value: boolean) => void;
   updateLayoutDirection: (value: PanelGroupProps['direction']) => void;
   updateIsFirstTime: (value: boolean) => void;
+  updateVimMode: (value: boolean) => void;
+  updateDebugMode: (value: boolean) => void;
 }
 
 const _useSettingsStore = create<SettingsState>()(
@@ -26,11 +30,13 @@ const _useSettingsStore = create<SettingsState>()(
     (set) => ({
       auto_run: false,
       auto_run_timeout: 1500,
-      loop_safeguard_threshold: 10,
+      loop_safeguard_threshold: 1000,
       loop_safeguard_timeout: 30000,
       persist_logs: false,
       layout_direction: 'horizontal',
       isFirstTime: true,
+      vimMode: false,
+      debugMode: false,
       updateAutoRun: (value) => set({ auto_run: value }),
       updateAutoRunTimeout: (value) => set({ auto_run_timeout: value }),
       updateLoopSafeguardThreshold: (value) =>
@@ -40,9 +46,21 @@ const _useSettingsStore = create<SettingsState>()(
       updatePersistLogs: (value) => set({ persist_logs: value }),
       updateLayoutDirection: (value) => set({ layout_direction: value }),
       updateIsFirstTime: (value) => set({ isFirstTime: value }),
+      updateVimMode: (value) => set({ vimMode: value }),
+      updateDebugMode: (value) => set({ debugMode: value }),
     }),
     {
       name: 'settings-storage',
+      version: 1,
+      migrate: (persistedState, version) => {
+        if (version === 0) {
+          (persistedState as SettingsState).vimMode = false;
+          (persistedState as SettingsState).debugMode = false;
+          (persistedState as SettingsState).loop_safeguard_threshold = 1000;
+        }
+
+        return persistedState;
+      },
     },
   ),
 );
@@ -53,3 +71,4 @@ export const SettingsLoopSafeguardThreshold = () =>
   _useSettingsStore.getState().loop_safeguard_threshold;
 export const SettingsLoopSafeguardTimeout = () =>
   _useSettingsStore.getState().loop_safeguard_timeout;
+export const SettingsDebugMode = () => _useSettingsStore.getState().debugMode;

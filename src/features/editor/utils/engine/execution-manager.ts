@@ -7,10 +7,12 @@ import type {
   SystemError,
 } from '@/features/editor/types';
 
+import { DebugLog, DebugLogVoid } from '../debug';
 import { rfdc } from './../rfdc';
 import { disposeQuickJS, executeCode } from './runtime';
 
 let startTimeRef: number | undefined;
+let DEBUG = DebugLogVoid;
 
 const startTimer = () => {
   startTimeRef = Date.now();
@@ -85,6 +87,7 @@ const exposeGlobals = {
   URL: UrlHandler,
 };
 
+// eslint-disable-next-line max-lines-per-function
 self.onmessage = async function ({
   data,
 }: {
@@ -94,20 +97,25 @@ self.onmessage = async function ({
     case 'run':
       try {
         const userCode = data.code;
+        DEBUG = data.options.debugMode ? DebugLog : DebugLogVoid;
         if (userCode.trim().length > 0) {
           const evaluationResult = await executeCode({
             code: userCode.trim(),
             options: {
               exposeGlobals: exposeGlobals,
               startTimer: startTimer,
+              loopThreshold: data.options.loopThreshold,
+              debugMode: data.options.debugMode,
             },
           });
 
           switch (evaluationResult.status) {
             case 'success':
+              DEBUG('execution successful');
               postMessage({ command: 'result', data: evaluationResult.data });
               break;
             case 'error':
+              DEBUG('execution failed');
               postMessage({
                 command: 'error',
                 data: evaluationResult.data,
@@ -115,6 +123,7 @@ self.onmessage = async function ({
               });
               break;
             default:
+              DEBUG('execution failed: unknown error');
               postMessage({
                 command: 'error',
                 data: 'evaluation response unhandled',
@@ -123,6 +132,7 @@ self.onmessage = async function ({
               break;
           }
         } else {
+          DEBUG('No code to be executed');
           postMessage({
             command: 'error',
             data: 'There is no code that can be evaluated.',
@@ -141,9 +151,11 @@ self.onmessage = async function ({
       }
       break;
     case 'dispose':
+      DEBUG('dispose worker order');
       disposeQuickJS();
       break;
     default:
+      DEBUG('unknown command');
       postMessage({ command: 'error', data: 'Not valid execution command.' });
       break;
   }
