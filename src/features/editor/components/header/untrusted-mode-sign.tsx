@@ -10,7 +10,7 @@ export const UntrustedModeSign = () => {
     <div className="flex h-full items-center ">
       <Badge
         variant="warning"
-        className="hover:cursor-pointer"
+        className="hover:bg-warning/70 hover:cursor-pointer"
         onClick={() => setUntrustedDialogOpen(true)}
       >
         Editor in Untrusted Mode
