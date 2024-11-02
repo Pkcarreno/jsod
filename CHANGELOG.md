@@ -1,5 +1,19 @@
 # Changelog
 
+## [1.6.0](https://github.com/Pkcarreno/jsod/compare/v1.5.0...v1.6.0) (2024-11-02)
+
+
+### Features
+
+* add helmet & script title and description ([318eb2c](https://github.com/Pkcarreno/jsod/commit/318eb2c7b713ae9ca1d3ea1296617f0c77511453))
+
+
+### Bug Fixes
+
+* **engine:** increase memory limit & max stack size in quickjs runtime ([faf64a0](https://github.com/Pkcarreno/jsod/commit/faf64a0ff9d5528076264a5c50cec7453513deec))
+* improve clickability of untrusted mode sign ([7f5d322](https://github.com/Pkcarreno/jsod/commit/7f5d322747187391dc1c860949bfbcae32a979bd))
+* **meta:** improve metatags ([0b7d36d](https://github.com/Pkcarreno/jsod/commit/0b7d36dc384358984de9ded69916aa1cccd6274a))
+
 ## [1.5.0](https://github.com/Pkcarreno/jsod/compare/v1.4.0...v1.5.0) (2024-10-12)
 
 
