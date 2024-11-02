@@ -92,8 +92,8 @@ export const executeCode: (
       ctxRef = ctx;
 
       let interruptCycles = 0;
-      ctx.runtime.setMemoryLimit(1024 * 640);
-      ctx.runtime.setMaxStackSize(1024 * 320);
+      ctx.runtime.setMemoryLimit(1024 * 1024);
+      ctx.runtime.setMaxStackSize(1024 * 1024);
       ctx.runtime.setInterruptHandler(() => {
         DEBUG('interrupt handler triggered. time: ', interruptCycles);
         return ++interruptCycles > loopThreshold;

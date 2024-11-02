@@ -66,7 +66,7 @@ export default defineConfig(({ mode }) => {
         registerType: 'prompt',
         injectRegister: 'auto',
         manifest: {
-          name: 'JS on Demand',
+          name: 'JSOD',
           short_name: 'JSOD',
           id: 'com.pkcarreno.jsod',
           start_url: `${process.env.BASE_URL}/`,
