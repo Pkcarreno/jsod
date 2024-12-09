@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.6.1](https://github.com/Pkcarreno/jsod/compare/v1.6.0...v1.6.1) (2024-12-09)
+
+
+### Bug Fixes
+
+* **vite:** disable basic ssl in order to run dev enviroment ([245dc9c](https://github.com/Pkcarreno/jsod/commit/245dc9c8ec07ddfc41eac5ed5857f1d6353b8828))
+
 ## [1.6.0](https://github.com/Pkcarreno/jsod/compare/v1.5.0...v1.6.0) (2024-11-02)
 
 
