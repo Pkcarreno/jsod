@@ -4,7 +4,7 @@ import react from '@vitejs/plugin-react';
 import { VitePWA } from 'vite-plugin-pwa';
 import tsconfigPaths from 'vite-tsconfig-paths';
 import path from 'path';
-import basicSsl from '@vitejs/plugin-basic-ssl';
+// import basicSsl from '@vitejs/plugin-basic-ssl';
 import replace from '@rollup/plugin-replace';
 import type { RollupReplaceOptions } from '@rollup/plugin-replace';
 
@@ -59,7 +59,7 @@ export default defineConfig(({ mode }) => {
     plugins: [
       react(),
       tsconfigPaths(),
-      basicSsl(),
+      // basicSsl(),
       replace(replaceOptions) as Plugin,
       VitePWA({
         strategies: 'generateSW',
