@@ -9,7 +9,7 @@ interface PlusMinusInput {
   value: number;
   onChange: (value: number) => void;
   interval?: number;
-  renderValue?: (value: number) => JSX.Element | string;
+  renderValue?: (value: number) => React.JSX.Element | string;
   delay?: number;
 }
 

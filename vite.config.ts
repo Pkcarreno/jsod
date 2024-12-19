@@ -147,6 +147,10 @@ export default defineConfig(({ mode }) => {
     resolve: {
       alias: {
         '@': path.resolve(__dirname, './src'),
+        '@uiw/codemirror-themes': path.resolve(
+          __dirname,
+          'node_modules/@uiw/codemirror-themes/esm/index.js',
+        ),
       },
     },
     test: {
