@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.6.1](https://github.com/Pkcarreno/jsod/compare/v1.6.0...v1.6.1) (2024-12-19)
+
+
+### Bug Fixes
+
+* **config:** workaround to codemirror 'unrecognized extension value in' ([d0dde9d](https://github.com/Pkcarreno/jsod/commit/d0dde9df75d7d1acf1b6c5876c15927d2369930d))
+* **types:** upgrade to react 19 types ([fb1e1cc](https://github.com/Pkcarreno/jsod/commit/fb1e1cceb3d058c3c846dc107d9545be0b614e5b))
+* **vite:** disable basic ssl in order to run dev enviroment ([245dc9c](https://github.com/Pkcarreno/jsod/commit/245dc9c8ec07ddfc41eac5ed5857f1d6353b8828))
+
 ## [1.6.0](https://github.com/Pkcarreno/jsod/compare/v1.5.0...v1.6.0) (2024-11-02)
 
 
