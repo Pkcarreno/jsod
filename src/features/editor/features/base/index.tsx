@@ -1,6 +1,13 @@
+import {
+  PinBottomIcon,
+  PinLeftIcon,
+  PinRightIcon,
+  PinTopIcon,
+} from '@radix-ui/react-icons';
 import { lazy, Suspense } from 'react';
 
 import { Loading } from '@/components/loading';
+import { Button } from '@/components/ui/button';
 import {
   ResizableHandle,
   ResizablePanel,
@@ -16,6 +23,7 @@ import { Footer } from './components/footer';
 const Output = lazy(() => import('../../components/output'));
 const CodemirrorEditor = lazy(() => import('../../components/editor'));
 
+// eslint-disable-next-line max-lines-per-function
 const BaseEditor = () => {
   const { layout_direction } = useSettingsStore();
   const {
@@ -38,6 +46,20 @@ const BaseEditor = () => {
             autoSaveId="persistence"
             direction={layout_direction}
           >
+            {!isVisiblePanelLeft && (
+              <Button
+                className="mx-2 hidden md:flex"
+                size="icon"
+                onClick={handleOpenLeft}
+                title="Open left panel"
+              >
+                {layout_direction === 'horizontal' ? (
+                  <PinRightIcon />
+                ) : (
+                  <PinBottomIcon />
+                )}
+              </Button>
+            )}
             <ResizablePanel
               ref={panelLeftRef}
               collapsible={true}
@@ -63,6 +85,20 @@ const BaseEditor = () => {
                 <Output />
               </Suspense>
             </ResizablePanel>
+            {!isVisiblePanelRight && (
+              <Button
+                className="mx-2 hidden md:flex"
+                size="icon"
+                onClick={handleOpenRight}
+                title="Open right panel"
+              >
+                {layout_direction === 'horizontal' ? (
+                  <PinLeftIcon />
+                ) : (
+                  <PinTopIcon />
+                )}
+              </Button>
+            )}
           </ResizablePanelGroup>
         </section>
         <Footer

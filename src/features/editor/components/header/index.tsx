@@ -4,6 +4,7 @@ import { useMemo } from 'react';
 import { ActionButtons } from './action-buttons';
 import { AutorunToggler } from './autorun-toggler';
 import { InfoEdit, InfoTitle } from './info';
+import { LayoutDirectionToggler } from './layout-direction-toggler';
 import { MainMenu } from './main-menu';
 import { OpenInSite } from './open-in-site';
 import { SharingMenu } from './sharing-menu';
@@ -27,6 +28,7 @@ export const Header = () => {
         <div className="flex flex-1 flex-wrap justify-end gap-3 sm:flex-none">
           {isIframe && <OpenInSite />}
           {!isIframe && <SharingMenu />}
+          <LayoutDirectionToggler />
           <AutorunToggler />
           <ActionButtons />
         </div>
