@@ -67,6 +67,41 @@ const HelpInfo = () => {
         <DialogTitle>Frequently Asked Questions</DialogTitle>
       </DialogHeader>
       <Accordion type="single" collapsible>
+        <AccordionItem value="about">
+          <AccordionTrigger>About JSoD</AccordionTrigger>
+          <AccordionContent>
+            <Paragraph>
+              Write, run, and share JavaScript code instantly. Main features:
+            </Paragraph>
+            <UnorderedList>
+              <li>
+                <a
+                  className="underline underline-offset-1"
+                  href="https://github.com/pkcarreno/jsod"
+                  target="_blank"
+                >
+                  Open source
+                </a>
+              </li>
+              <li>Runs 100% on your device</li>
+              <li>
+                Powered by{' '}
+                <a
+                  className="underline underline-offset-1"
+                  href="https://github.com/justjake/quickjs-emscripten"
+                  target="_blank"
+                >
+                  QuickJS
+                </a>
+              </li>
+              <li>Share your code</li>
+              <li>Installable as PWA</li>
+            </UnorderedList>
+            <Paragraph>
+              JSoD means '<strong>JS on Demand</strong>' 😉
+            </Paragraph>
+          </AccordionContent>
+        </AccordionItem>
         <AccordionItem value="faq-1">
           <AccordionTrigger>
             How do I preview the output of my code?
