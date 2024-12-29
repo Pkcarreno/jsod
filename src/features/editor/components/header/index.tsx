@@ -3,7 +3,7 @@ import { useMemo } from 'react';
 
 import { ActionButtons } from './action-buttons';
 import { AutorunToggler } from './autorun-toggler';
-import { InfoEdit, InfoTitle } from './info';
+import { InfoTitle } from './info';
 import { LayoutDirectionToggler } from './layout-direction-toggler';
 import { MainMenu } from './main-menu';
 import { OpenInSite } from './open-in-site';
@@ -22,7 +22,6 @@ export const Header = () => {
 
         <div className="hidden flex-1 gap-1 overflow-hidden sm:flex">
           <InfoTitle />
-          <InfoEdit />
         </div>
 
         <div className="flex flex-1 flex-wrap justify-end gap-3 sm:flex-none">
