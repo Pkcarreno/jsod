@@ -2,7 +2,6 @@ import { Separator } from '@radix-ui/react-separator';
 import { useMemo } from 'react';
 
 import { ActionButtons } from './action-buttons';
-import { AutorunToggler } from './autorun-toggler';
 import { InfoTitle } from './info';
 import { LayoutDirectionToggler } from './layout-direction-toggler';
 import { MainMenu } from './main-menu';
@@ -28,7 +27,6 @@ export const Header = () => {
           {isIframe && <OpenInSite />}
           {!isIframe && <SharingMenu />}
           <LayoutDirectionToggler />
-          <AutorunToggler />
           <ActionButtons />
         </div>
       </header>
