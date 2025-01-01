@@ -1,5 +1,26 @@
 # Changelog
 
+## [1.7.0](https://github.com/Pkcarreno/jsod/compare/v1.6.0...v1.7.0) (2025-01-01)
+
+
+### Features
+
+* change autorun modifier location ([b09375d](https://github.com/Pkcarreno/jsod/commit/b09375ded29d79d1d1755e2e5a7d8d8a96510ca3))
+* improve script details section ([4a2bbab](https://github.com/Pkcarreno/jsod/commit/4a2bbab52f9a829b86ddb3ce82f31ea6ab415311))
+* **settings:** make autorun setting true by default ([99b5301](https://github.com/Pkcarreno/jsod/commit/99b530178eddc220fa2096995e72e2edb5429f0a))
+* use react document metadata instead of react-helmet-async ([6c2c3fc](https://github.com/Pkcarreno/jsod/commit/6c2c3fc6e6a8de1647cda5cd60c5f7904d351f75))
+* **workflow:** rework desktop footer and on panels collapse action buttons location ([47514fb](https://github.com/Pkcarreno/jsod/commit/47514fb780c260cd8dd960041eb8e9d49c45742c))
+
+
+### Bug Fixes
+
+* **config:** workaround to codemirror 'unrecognized extension value in' ([d0dde9d](https://github.com/Pkcarreno/jsod/commit/d0dde9df75d7d1acf1b6c5876c15927d2369930d))
+* **deps:** remove unused component and related: tabs ([2043a2d](https://github.com/Pkcarreno/jsod/commit/2043a2d6fd5a94c8475cb9413bc402356e420f7d))
+* hide layout button on mobile screen size ([f026faf](https://github.com/Pkcarreno/jsod/commit/f026faf9e557223a1f97a157fc18dd06c967b7f8))
+* **types:** upgrade to react 19 types ([fb1e1cc](https://github.com/Pkcarreno/jsod/commit/fb1e1cceb3d058c3c846dc107d9545be0b614e5b))
+* **vite:** disable basic ssl in order to run dev enviroment ([245dc9c](https://github.com/Pkcarreno/jsod/commit/245dc9c8ec07ddfc41eac5ed5857f1d6353b8828))
+* **workflow:** remove first time dialog and place about content on FAQ ([5e7226a](https://github.com/Pkcarreno/jsod/commit/5e7226a0ffb2c50d34f7aa2cf7f7710a455d4c29))
+
 ## [1.6.0](https://github.com/Pkcarreno/jsod/compare/v1.5.0...v1.6.0) (2024-11-02)
 
 
