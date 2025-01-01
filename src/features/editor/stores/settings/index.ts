@@ -28,7 +28,7 @@ export interface SettingsState {
 const _useSettingsStore = create<SettingsState>()(
   persist(
     (set) => ({
-      auto_run: false,
+      auto_run: true,
       auto_run_timeout: 1500,
       loop_safeguard_threshold: 1000,
       loop_safeguard_timeout: 30000,
@@ -51,12 +51,15 @@ const _useSettingsStore = create<SettingsState>()(
     }),
     {
       name: 'settings-storage',
-      version: 1,
+      version: 2,
       migrate: (persistedState, version) => {
         if (version === 0) {
           (persistedState as SettingsState).vimMode = false;
           (persistedState as SettingsState).debugMode = false;
           (persistedState as SettingsState).loop_safeguard_threshold = 1000;
+        }
+        if (version === 1) {
+          (persistedState as SettingsState).auto_run = true;
         }
 
         return persistedState;
