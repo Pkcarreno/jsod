@@ -1,5 +1,3 @@
-import { Helmet } from 'react-helmet-async';
-
 import { useCodeStore } from '../stores/editor';
 
 interface Props {
@@ -11,9 +9,7 @@ export const MetatagsProvider: React.FC<Props> = ({ children }) => {
 
   return (
     <>
-      <Helmet>
-        <title>JSoD - {title ? title : 'Script'}</title>
-      </Helmet>
+      <title>{`JSoD - ${title ? title : 'Script'}`}</title>
       {children}
     </>
   );

@@ -22,6 +22,7 @@ export const LayoutDirectionToggler = () => {
       <Tooltip>
         <Button
           variant="outline"
+          className="hidden md:block"
           size="sm"
           onClick={() => updateLayoutDirection(nextDirection)}
           asChild

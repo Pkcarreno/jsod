@@ -2,12 +2,14 @@ import prettyMilliseconds from 'pretty-ms';
 import { useRef } from 'react';
 
 import { Label } from '@/components/ui/label';
+import { Switch } from '@/components/ui/switch';
 import { PlusMinusInput } from '@/features/editor/components/ui/plus-minus-input';
 import type { SettingsState } from '@/features/editor/stores/settings';
 import { useSettingsStore } from '@/features/editor/stores/settings';
 
 export const RuntimeGeneralSettings = () => {
-  const { auto_run_timeout, updateAutoRunTimeout } = useSettingsStore();
+  const { auto_run_timeout, updateAutoRunTimeout, auto_run, updateAutoRun } =
+    useSettingsStore();
   const autoRunTimeoutRef =
     useRef<SettingsState['auto_run_timeout']>(auto_run_timeout);
 
@@ -30,6 +32,11 @@ export const RuntimeGeneralSettings = () => {
           interval={AUTO_RUN_TIMEOUT_INTERVAL}
           renderValue={(value) => prettyMilliseconds(value)}
         />
+      </div>
+
+      <div className="flex items-center justify-between gap-2">
+        <Label>Auto run</Label>
+        <Switch onCheckedChange={updateAutoRun} checked={auto_run} />
       </div>
     </div>
   );

@@ -1,9 +1,17 @@
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useCallback, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';
 import { z } from 'zod';
 
 import { Button } from '@/components/ui/button';
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from '@/components/ui/dialog';
 import {
   Form,
   FormControl,
@@ -81,5 +89,33 @@ export const InfoForm: React.FC<Props> = ({ closeDialog }) => {
         </Button>
       </form>
     </Form>
+  );
+};
+
+interface InfoFormDialogProps {
+  children: React.ReactNode;
+  asChild?: boolean;
+}
+
+export const InfoFormDialog: React.FC<InfoFormDialogProps> = ({
+  children,
+  asChild,
+}) => {
+  const [open, setOpen] = useState(false);
+
+  const closeDialog = useCallback(() => {
+    setOpen(false);
+  }, []);
+
+  return (
+    <Dialog open={open} onOpenChange={setOpen}>
+      <DialogTrigger asChild={asChild}>{children}</DialogTrigger>
+      <DialogContent>
+        <DialogHeader>
+          <DialogTitle>Edit script details</DialogTitle>
+        </DialogHeader>
+        <InfoForm closeDialog={closeDialog} />
+      </DialogContent>
+    </Dialog>
   );
 };

@@ -10,6 +10,7 @@ import useTimeoutFn from '@/hooks/use-timeout-fn';
 
 import { runJs, stopJs } from '../../utils/engine/controller';
 
+// eslint-disable-next-line max-lines-per-function
 export const ActionButtons = () => {
   const { persist_logs, auto_run, auto_run_timeout } = useSettingsStore();
   const { code } = useCodeStore();
@@ -61,6 +62,19 @@ export const ActionButtons = () => {
     setIsExecuting(false);
     clearStopButtonState();
   };
+
+  if (auto_run) {
+    return (
+      <Button
+        variant="destructive"
+        disabled={!showStopButton}
+        onClick={stopExecution}
+        size="icon"
+      >
+        <PauseIcon className="size-5" />
+      </Button>
+    );
+  }
 
   if (isExecuting && showStopButton)
     return (

@@ -12,13 +12,13 @@ class LogNode {
   }
 }
 
-interface ILinkedLogs {
+interface BaseLinkedLog {
   append(data: Log): void;
   clearFirst(): void;
   getAllLogsInArray(): Log[];
 }
 
-class LinkedLogs implements ILinkedLogs {
+class LinkedLogs implements BaseLinkedLog {
   private head: LogNode | null = null;
 
   append(data: Log) {
