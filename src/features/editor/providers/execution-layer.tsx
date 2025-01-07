@@ -89,7 +89,7 @@ export const ExecutionLayerProvider: React.FC<Props> = ({ children }) => {
         throw '01';
       }
       if (status === 'running' || status === 'overflow') {
-        stopJs();
+        throw '02';
       }
       resetOverflowTimeout();
       if (!persist_logs) clearLogs();
@@ -99,6 +99,9 @@ export const ExecutionLayerProvider: React.FC<Props> = ({ children }) => {
       console.error(e);
       if (e === '01') {
         toast.warning('Nothing to execute!');
+      }
+      if (e === '02') {
+        toast.warning('Execution already running!');
       }
     } finally {
       resetExecutionLayer();
