@@ -13,6 +13,7 @@ export interface SettingsState {
   layout_direction: PanelGroupProps['direction'];
   isFirstTime: boolean;
   vimMode: boolean;
+  editorPlaceholder: boolean;
   debugMode: boolean;
   updateAutoRun: (value: boolean) => void;
   updateAutoRunTimeout: (value: number) => void;
@@ -22,6 +23,7 @@ export interface SettingsState {
   updateLayoutDirection: (value: PanelGroupProps['direction']) => void;
   updateIsFirstTime: (value: boolean) => void;
   updateVimMode: (value: boolean) => void;
+  updateEditorPlaceholder: (value: boolean) => void;
   updateDebugMode: (value: boolean) => void;
 }
 
@@ -36,6 +38,7 @@ const _useSettingsStore = create<SettingsState>()(
       layout_direction: 'horizontal',
       isFirstTime: true,
       vimMode: false,
+      editorPlaceholder: false,
       debugMode: false,
       updateAutoRun: (value) => set({ auto_run: value }),
       updateAutoRunTimeout: (value) => set({ auto_run_timeout: value }),
@@ -47,11 +50,12 @@ const _useSettingsStore = create<SettingsState>()(
       updateLayoutDirection: (value) => set({ layout_direction: value }),
       updateIsFirstTime: (value) => set({ isFirstTime: value }),
       updateVimMode: (value) => set({ vimMode: value }),
+      updateEditorPlaceholder: (value) => set({ editorPlaceholder: value }),
       updateDebugMode: (value) => set({ debugMode: value }),
     }),
     {
       name: 'settings-storage',
-      version: 2,
+      version: 3,
       migrate: (persistedState, version) => {
         if (version === 0) {
           (persistedState as SettingsState).vimMode = false;
@@ -60,6 +64,9 @@ const _useSettingsStore = create<SettingsState>()(
         }
         if (version === 1) {
           (persistedState as SettingsState).auto_run = true;
+        }
+        if (version === 2) {
+          (persistedState as SettingsState).editorPlaceholder = true;
         }
 
         return persistedState;

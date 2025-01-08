@@ -18,7 +18,7 @@ const lightTheme = themeInit({ theme: 'light' });
 export const CodemirrorEditor = () => {
   const { themeMode } = useTheme();
   const { code, setCode } = useCodeStore();
-  const { vimMode } = useSettingsStore();
+  const { vimMode, editorPlaceholder } = useSettingsStore();
   const { isUntrustedMode, isUnedited, setUnedited } = useUntrustedMode();
   const codeRef = useRef<string | null>(null);
   const [extensions, setExtensions] = useState<
@@ -75,6 +75,7 @@ export const CodemirrorEditor = () => {
         readOnly={isUntrustedMode}
         extensions={extensions}
         onChange={handleEditorChange}
+        placeholder={editorPlaceholder ? placeholderContent : undefined}
         spellCheck={false}
         translate="no"
       />
@@ -83,3 +84,19 @@ export const CodemirrorEditor = () => {
 };
 
 export default CodemirrorEditor;
+
+const placeholderContent = `Welcome to JSoD!
+
+To log the data to print you must
+use the \`console\` global object,
+the supported methods are:
+
+- \`console.log\`
+- \`console.info\`
+- \`console.error\`
+- \`console.warn\`
+
+Note: you can hide this text from
+the settings menu, click on
+JSoD -> Settings -> under “Editor”
+toggle “Placeholder”.`;

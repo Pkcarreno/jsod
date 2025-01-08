@@ -54,6 +54,7 @@
     "eslint-linter-browserify": "^9.17.0",
     "globals": "^15.13.0",
     "js-base64": "^3.7.7",
+    "motion": "^11.16.0",
     "only-allow": "^1.2.1",
     "pretty-ms": "^9.2.0",
     "quickjs-emscripten-core": "0.31.0",

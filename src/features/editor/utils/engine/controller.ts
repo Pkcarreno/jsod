@@ -36,6 +36,10 @@ export function stopJs() {
 
 // eslint-disable-next-line max-lines-per-function
 export function runJs(code: string) {
+  if (workerRef !== undefined) {
+    throw '02';
+  }
+
   const startTime = Date.now();
   const debugMode = SettingsDebugMode();
 

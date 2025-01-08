@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { EditorBehaviorProvider } from './editor-behavior';
+import { ExecutionLayerProvider } from './execution-layer';
 import { HelpProvider } from './help-provider';
 import { MetatagsProvider } from './meta-provider';
 import { SettingsDialogProvider } from './settings-dialog-provider';
@@ -17,7 +18,9 @@ const EditorProviders: React.FC<Props> = ({ children }) => {
         <HelpProvider>
           <SettingsDialogProvider>
             <EditorBehaviorProvider>
-              <>{children}</>
+              <ExecutionLayerProvider>
+                <>{children}</>
+              </ExecutionLayerProvider>
             </EditorBehaviorProvider>
           </SettingsDialogProvider>
         </HelpProvider>
