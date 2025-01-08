@@ -1,5 +1,18 @@
 # Changelog
 
+## [1.7.1](https://github.com/Pkcarreno/jsod/compare/v1.7.0...v1.7.1) (2025-01-08)
+
+
+### Bug Fixes
+
+* action button styles ([5ec8d49](https://github.com/Pkcarreno/jsod/commit/5ec8d49f5e6cf64ad236d8451babdafd4af3852d))
+* add placeholder setting ([e5aa8df](https://github.com/Pkcarreno/jsod/commit/e5aa8df821fb18f52161c0d5ef5a0abf7bcdc6ca))
+* animate action button ([c07a1a0](https://github.com/Pkcarreno/jsod/commit/c07a1a0a5365602af76253ba5344a15c97bee57a))
+* implement placeholder on editor with a 'how to use' guide ([0ff7c34](https://github.com/Pkcarreno/jsod/commit/0ff7c34a806ac8a9c6f76520d0847b7f82d4970d))
+* improve action button animation & add execution layer provider ([c5a9826](https://github.com/Pkcarreno/jsod/commit/c5a9826b19a13cdc5d34663cde583088b1b2f9f1))
+* layout button styles ([d946457](https://github.com/Pkcarreno/jsod/commit/d946457f692ffedbc997caf2fb8813c4208e21bb))
+* prevent multiple executions ([71a9c3f](https://github.com/Pkcarreno/jsod/commit/71a9c3f6a4f848a4184e96ef4f51f746228eef30))
+
 ## [1.7.0](https://github.com/Pkcarreno/jsod/compare/v1.6.0...v1.7.0) (2025-01-01)
 
 
