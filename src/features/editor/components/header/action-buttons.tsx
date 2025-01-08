@@ -49,7 +49,10 @@ export const AnimatedActionButton: React.FC<AnimatedActionButtonProps> = ({
     if (state === 'overflow')
       return 'bg-destructive text-destructive-foreground shadow-sm hover:!bg-destructive/90';
 
-    return 'bg-primary text-primary-foreground shadow hover:!bg-primary/90';
+    if (state === 'idle')
+      return 'bg-primary text-primary-foreground shadow hover:!bg-primary/90';
+
+    return '';
   }, [state]);
 
   return (
