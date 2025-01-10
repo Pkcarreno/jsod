@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.7.2](https://github.com/Pkcarreno/jsod/compare/v1.7.1...v1.7.2) (2025-01-10)
+
+
+### Bug Fixes
+
+* **store:** default settings ([334305c](https://github.com/Pkcarreno/jsod/commit/334305c885e129497d322d399a20dfe8acb410d3))
+
 ## [1.7.1](https://github.com/Pkcarreno/jsod/compare/v1.7.0...v1.7.1) (2025-01-08)
 
 

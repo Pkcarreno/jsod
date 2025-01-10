@@ -1,6 +1,6 @@
 {
   "name": "jsod",
-  "version": "1.7.1",
+  "version": "1.7.2",
   "description": "Write, run, and share JavaScript code instantly",
   "author": "Pedro Carreño (34664891+Pkcarreno@users.noreply.github.com)",
   "type": "module",
