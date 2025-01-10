@@ -36,9 +36,9 @@ const _useSettingsStore = create<SettingsState>()(
       loop_safeguard_timeout: 30000,
       persist_logs: false,
       layout_direction: 'horizontal',
-      isFirstTime: true,
+      isFirstTime: false,
       vimMode: false,
-      editorPlaceholder: false,
+      editorPlaceholder: true,
       debugMode: false,
       updateAutoRun: (value) => set({ auto_run: value }),
       updateAutoRunTimeout: (value) => set({ auto_run_timeout: value }),
@@ -55,7 +55,7 @@ const _useSettingsStore = create<SettingsState>()(
     }),
     {
       name: 'settings-storage',
-      version: 3,
+      version: 4,
       migrate: (persistedState, version) => {
         if (version === 0) {
           (persistedState as SettingsState).vimMode = false;
@@ -67,6 +67,10 @@ const _useSettingsStore = create<SettingsState>()(
         }
         if (version === 2) {
           (persistedState as SettingsState).editorPlaceholder = true;
+        }
+        if (version === 3) {
+          (persistedState as SettingsState).editorPlaceholder = true;
+          (persistedState as SettingsState).isFirstTime = false;
         }
 
         return persistedState;
