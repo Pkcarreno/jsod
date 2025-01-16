@@ -1,5 +1,5 @@
 import { PauseIcon, PlayIcon, SlashIcon } from '@radix-ui/react-icons';
-import type { DynamicAnimationOptions } from 'motion';
+import type { AnimationOptions } from 'motion';
 import type { MotionStyle } from 'motion/react';
 import { useAnimate } from 'motion/react';
 import React, { useCallback, useEffect, useMemo } from 'react';
@@ -81,7 +81,7 @@ const BASE_ICON_STYLES: MotionStyle = {
   display: 'none',
   rotate: 45,
 };
-const BASE_ICON_OPTIONS: DynamicAnimationOptions = {
+const BASE_ICON_OPTIONS: AnimationOptions = {
   duration: 0.1,
 };
 const CURRENT_ICON_STYLES: MotionStyle = {
@@ -89,7 +89,7 @@ const CURRENT_ICON_STYLES: MotionStyle = {
   position: 'absolute',
   rotate: 0,
 };
-const CURRENT_ICON_OPTIONS: DynamicAnimationOptions = {
+const CURRENT_ICON_OPTIONS: AnimationOptions = {
   duration: 0.1,
   delay: 0.1,
 };
