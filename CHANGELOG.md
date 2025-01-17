@@ -1,5 +1,18 @@
 # Changelog
 
+## [1.8.0](https://github.com/Pkcarreno/jsod/compare/v1.7.2...v1.8.0) (2025-01-17)
+
+
+### Features
+
+* migrate to lucide icons ([c5b7bfe](https://github.com/Pkcarreno/jsod/commit/c5b7bfef73b60094812368b9a08a55558391a6e8))
+
+
+### Bug Fixes
+
+* add verticacl margin to open panel buttons ([eac30c2](https://github.com/Pkcarreno/jsod/commit/eac30c26423b6688021ba0bb65528b716671db90))
+* simpler toggle layout text ([ed980e0](https://github.com/Pkcarreno/jsod/commit/ed980e0fedbd9f6ce195b27a262a1fec047246a1))
+
 ## [1.7.2](https://github.com/Pkcarreno/jsod/compare/v1.7.1...v1.7.2) (2025-01-10)
 
 
