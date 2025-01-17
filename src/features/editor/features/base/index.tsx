@@ -48,7 +48,7 @@ const BaseEditor = () => {
           >
             {!isVisiblePanelLeft && (
               <Button
-                className="mx-2 hidden md:flex"
+                className="m-2 hidden md:flex"
                 size="icon"
                 onClick={handleOpenLeft}
                 title="Open left panel"
@@ -87,7 +87,7 @@ const BaseEditor = () => {
             </ResizablePanel>
             {!isVisiblePanelRight && (
               <Button
-                className="mx-2 hidden md:flex"
+                className="m-2 hidden md:flex"
                 size="icon"
                 onClick={handleOpenRight}
                 title="Open right panel"
