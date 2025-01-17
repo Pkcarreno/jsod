@@ -35,7 +35,7 @@ export const LayoutDirectionToggler = () => {
           </TooltipTrigger>
         </Button>
         <TooltipContent>
-          <p>Switch to {layout_direction} layout</p>
+          <p>Flip {layout_direction}</p>
         </TooltipContent>
       </Tooltip>
     </TooltipProvider>
