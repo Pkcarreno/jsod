@@ -1,10 +1,6 @@
-import {
-  CrossCircledIcon,
-  InfoCircledIcon,
-  QuestionMarkCircledIcon,
-} from '@radix-ui/react-icons';
 import type { VariantProps } from 'class-variance-authority';
 import { cva } from 'class-variance-authority';
+import { CircleAlert, CircleHelp, CircleX } from 'lucide-react';
 import prettyMilliseconds from 'pretty-ms';
 import React from 'react';
 
@@ -67,15 +63,15 @@ interface IconSelectorProps {
 
 const IconSelector: React.FC<IconSelectorProps> = ({ variant }) => {
   if (variant === 'error') {
-    return <CrossCircledIcon className="size-full" />;
+    return <CircleX className="size-full" />;
   }
 
   if (variant === 'warn') {
-    return <QuestionMarkCircledIcon className="size-full" />;
+    return <CircleHelp className="size-full" />;
   }
 
   if (variant === 'info') {
-    return <InfoCircledIcon className="size-full" />;
+    return <CircleAlert className="size-full" />;
   }
 
   return null;

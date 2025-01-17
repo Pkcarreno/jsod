@@ -1,5 +1,4 @@
-import type { IconProps } from '@radix-ui/react-icons/dist/types';
-import type { ForwardRefExoticComponent, RefAttributes } from 'react';
+import type { LucideIcon } from 'lucide-react';
 import React from 'react';
 
 import type { ButtonProps } from '@/components/ui/button';
@@ -31,7 +30,7 @@ export const BottomTabsContainer: React.FC<BottomTabsContainerProps> = ({
 
 interface BottomTabsTabProps extends ButtonProps {
   label: string;
-  icon: ForwardRefExoticComponent<IconProps & RefAttributes<SVGSVGElement>>;
+  icon: LucideIcon;
   isActive?: boolean;
   showBadge?: boolean;
 }

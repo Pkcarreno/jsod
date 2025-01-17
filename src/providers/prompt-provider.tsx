@@ -1,4 +1,4 @@
-import { UpdateIcon } from '@radix-ui/react-icons';
+import { RefreshCw } from 'lucide-react';
 import { createContext } from 'react';
 import { toast } from 'sonner';
 import { useRegisterSW } from 'virtual:pwa-register/react';
@@ -51,7 +51,7 @@ export const PromptProvider: React.FC<PromptProviderProps> = ({ children }) => {
   if (needRefresh) {
     toast('New content available', {
       description: 'click on reload button to update',
-      icon: <UpdateIcon />,
+      icon: <RefreshCw className="size-4" />,
       action: {
         label: 'Reload',
         onClick: () => updateServiceWorker(true),

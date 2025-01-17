@@ -1,4 +1,4 @@
-import { CodeIcon, ListBulletIcon } from '@radix-ui/react-icons';
+import { Code, Logs } from 'lucide-react';
 import React from 'react';
 
 import {
@@ -26,13 +26,13 @@ export const MobileFooter: React.FC<Props> = ({
     <BottomTabsContainer className={className}>
       <BottomTabsTab
         label="Editor"
-        icon={CodeIcon}
+        icon={Code}
         onClick={onLeftClick}
         isActive={isLeftActive}
       />
       <BottomTabsTab
         label="Output"
-        icon={ListBulletIcon}
+        icon={Logs}
         onClick={() => {
           onRightClick();
           clearAlert();

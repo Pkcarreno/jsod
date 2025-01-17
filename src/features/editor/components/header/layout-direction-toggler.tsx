@@ -1,4 +1,4 @@
-import { ViewHorizontalIcon, ViewVerticalIcon } from '@radix-ui/react-icons';
+import { FlipHorizontal, FlipVertical } from 'lucide-react';
 
 import { Button } from '@/components/ui/button';
 import {
@@ -27,11 +27,15 @@ export const LayoutDirectionToggler = () => {
           asChild
         >
           <TooltipTrigger>
-            {isHorizontal ? <ViewHorizontalIcon /> : <ViewVerticalIcon />}
+            {isHorizontal ? (
+              <FlipVertical className="size-4" />
+            ) : (
+              <FlipHorizontal className="size-4" />
+            )}
           </TooltipTrigger>
         </Button>
         <TooltipContent>
-          <p>Switch to {layout_direction} layout</p>
+          <p>Flip {layout_direction}</p>
         </TooltipContent>
       </Tooltip>
     </TooltipProvider>

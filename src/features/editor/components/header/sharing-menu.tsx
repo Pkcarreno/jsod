@@ -1,5 +1,5 @@
-import { Share1Icon } from '@radix-ui/react-icons';
 import copy from 'copy-to-clipboard';
+import { Share2 } from 'lucide-react';
 import { toast } from 'sonner';
 
 import { Button } from '@/components/ui/button';
@@ -59,7 +59,7 @@ export const SharingMenu = () => {
           <TooltipTrigger asChild>
             <PopoverTrigger asChild>
               <Button size="icon" variant="outline">
-                <Share1Icon />
+                <Share2 className="size-4" />
                 <span className="sr-only">Shared current code</span>
               </Button>
             </PopoverTrigger>
