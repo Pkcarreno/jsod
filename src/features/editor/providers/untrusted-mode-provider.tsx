@@ -1,4 +1,4 @@
-import { ExclamationTriangleIcon } from '@radix-ui/react-icons';
+import { TriangleAlert } from 'lucide-react';
 import React, { createContext, useEffect, useState } from 'react';
 
 import {
@@ -140,7 +140,7 @@ const UntrustedModeInfo = () => {
     <>
       <DialogHeader className="border-destructive bg-destructive/10 text-destructive rounded-xl border p-4">
         <DialogTitle className="flex items-center justify-center gap-2 sm:flex-row">
-          <ExclamationTriangleIcon className="size-6" />
+          <TriangleAlert className="size-6" />
           WARNING!
         </DialogTitle>
         <DialogDescription className="text-destructive">

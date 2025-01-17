@@ -1,4 +1,4 @@
-import { ExternalLinkIcon } from '@radix-ui/react-icons';
+import { ExternalLink } from 'lucide-react';
 import { useMemo } from 'react';
 
 import { Button } from '@/components/ui/button';
@@ -17,7 +17,7 @@ export const OpenInSite = () => {
     <Button asChild variant="outline">
       <a href={prepareUrl} className="flex items-center gap-1" target="_blank">
         Open
-        <ExternalLinkIcon />
+        <ExternalLink className="size-4" />
       </a>
     </Button>
   );

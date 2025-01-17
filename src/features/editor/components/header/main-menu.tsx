@@ -1,9 +1,4 @@
-import {
-  CheckIcon,
-  ChevronDownIcon,
-  ExternalLinkIcon,
-  UpdateIcon,
-} from '@radix-ui/react-icons';
+import { Check, ChevronDown, ExternalLink, RefreshCw } from 'lucide-react';
 
 import {
   DropdownMenu,
@@ -33,7 +28,7 @@ export const MainMenu = () => {
     <DropdownMenu>
       <DropdownMenuTrigger className="flex items-center gap-1">
         <span className="text-xl font-bold">JSoD</span>
-        <ChevronDownIcon className="text-muted-foreground size-4" />
+        <ChevronDown className="text-muted-foreground size-4" />
       </DropdownMenuTrigger>
       <DropdownMenuContent>
         <DropdownMenuSub>
@@ -46,7 +41,7 @@ export const MainMenu = () => {
                 className="justify-between"
               >
                 Light
-                {theme === 'light' && <CheckIcon />}
+                {theme === 'light' && <Check className="size-4" />}
               </DropdownMenuItem>
               <DropdownMenuItem
                 disabled={theme === 'dark'}
@@ -54,7 +49,7 @@ export const MainMenu = () => {
                 className="justify-between"
               >
                 Dark
-                {theme === 'dark' && <CheckIcon />}
+                {theme === 'dark' && <Check className="size-4" />}
               </DropdownMenuItem>
               <DropdownMenuSeparator />
               <DropdownMenuItem
@@ -63,7 +58,7 @@ export const MainMenu = () => {
                 className="justify-between"
               >
                 System
-                {theme === 'system' && <CheckIcon />}
+                {theme === 'system' && <Check className="size-4" />}
               </DropdownMenuItem>
             </DropdownMenuSubContent>
           </DropdownMenuPortal>
@@ -81,7 +76,7 @@ export const MainMenu = () => {
             className="flex gap-1"
             target="_blank"
           >
-            Github <ExternalLinkIcon />
+            Github <ExternalLink className="size-4" />
           </a>
         </DropdownMenuItem>
         <DropdownMenuSeparator />
@@ -91,7 +86,7 @@ export const MainMenu = () => {
               className="bg-primary/20 focus:bg-primary/40 focus:text-foreground gap-1"
               onClick={() => updateServiceWorker(true)}
             >
-              <UpdateIcon />
+              <RefreshCw className="size-4" />
               New Update
             </DropdownMenuItem>
             <DropdownMenuSeparator />

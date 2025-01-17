@@ -1,4 +1,4 @@
-import { ArrowDownIcon } from '@radix-ui/react-icons';
+import { ArrowDown } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 import type { VirtuosoHandle } from 'react-virtuoso';
 import { Virtuoso } from 'react-virtuoso';
@@ -97,7 +97,7 @@ export const LogsList = () => {
         )}
         size="icon"
       >
-        <ArrowDownIcon />
+        <ArrowDown className="size-4" />
       </Button>
     </div>
   );

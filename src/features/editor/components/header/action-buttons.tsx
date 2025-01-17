@@ -1,4 +1,4 @@
-import { PauseIcon, PlayIcon, SlashIcon } from '@radix-ui/react-icons';
+import { Pause, Play, Slash } from 'lucide-react';
 import type { AnimationOptions } from 'motion';
 import type { MotionStyle } from 'motion/react';
 import { useAnimate } from 'motion/react';
@@ -66,12 +66,12 @@ export const AnimatedActionButton: React.FC<AnimatedActionButtonProps> = ({
         disabled={isDisabled}
       >
         <LoadingIcon id="icon-loading" />
-        <PauseIcon id="icon-pause" className="relative inline-block size-5" />
-        <SlashIcon
+        <Pause id="icon-pause" className="relative inline-block size-4" />
+        <Slash
           id="icon-running"
-          className="relative inline-block size-5 animate-spin"
+          className="relative inline-block size-3 animate-spin"
         />
-        <PlayIcon id="icon-play" className="relative inline-block size-5" />
+        <Play id="icon-play" className="relative inline-block size-4" />
       </button>
     </div>
   );

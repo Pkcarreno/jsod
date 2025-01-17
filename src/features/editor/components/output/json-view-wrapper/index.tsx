@@ -1,5 +1,5 @@
-import { CheckIcon, CopyIcon } from '@radix-ui/react-icons';
 import JV from '@uiw/react-json-view';
+import { Check, Copy } from 'lucide-react';
 import React from 'react';
 
 import { JsonViewTheme } from './theme';
@@ -21,14 +21,21 @@ export const JsonView: React.FC<Props> = (props) => {
           // @ts-expect-error: Looks like data-copied doesn't exist, but it's needed
           'data-copied': isCopied,
           children: _children,
+          className: _className,
           ...props
         }) => {
           if (isCopied) {
             return (
-              <CheckIcon color="var(--w-rjv-copied-success-color)" {...props} />
+              <Check
+                color="var(--w-rjv-copied-success-color)"
+                {...props}
+                fill="none"
+              />
             );
           }
-          return <CopyIcon color="var(--w-rjv-copied-color)" {...props} />;
+          return (
+            <Copy color="var(--w-rjv-copied-color)" {...props} fill="none" />
+          );
         }}
       />
     </JV>

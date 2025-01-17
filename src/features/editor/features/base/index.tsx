@@ -1,9 +1,9 @@
 import {
-  PinBottomIcon,
-  PinLeftIcon,
-  PinRightIcon,
-  PinTopIcon,
-} from '@radix-ui/react-icons';
+  PanelBottomOpen,
+  PanelLeftOpen,
+  PanelRightOpen,
+  PanelTopOpen,
+} from 'lucide-react';
 import { lazy, Suspense } from 'react';
 
 import { Loading } from '@/components/loading';
@@ -54,9 +54,9 @@ const BaseEditor = () => {
                 title="Open left panel"
               >
                 {layout_direction === 'horizontal' ? (
-                  <PinRightIcon />
+                  <PanelLeftOpen className="size-4" />
                 ) : (
-                  <PinBottomIcon />
+                  <PanelTopOpen className="size-4" />
                 )}
               </Button>
             )}
@@ -93,9 +93,9 @@ const BaseEditor = () => {
                 title="Open right panel"
               >
                 {layout_direction === 'horizontal' ? (
-                  <PinLeftIcon />
+                  <PanelRightOpen className="size-4" />
                 ) : (
-                  <PinTopIcon />
+                  <PanelBottomOpen className="size-4" />
                 )}
               </Button>
             )}

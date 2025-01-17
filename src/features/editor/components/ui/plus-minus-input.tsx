@@ -1,4 +1,4 @@
-import { MinusIcon, PlusIcon } from '@radix-ui/react-icons';
+import { Minus, Plus } from 'lucide-react';
 import React from 'react';
 
 import { Button } from '@/components/ui/button';
@@ -34,7 +34,7 @@ export const PlusMinusInput: React.FC<PlusMinusInput> = ({
         onMouseLeave={stopInterval}
         onClick={() => onChange(-interval)}
       >
-        <MinusIcon className="size-3" />
+        <Minus className="size-4" />
       </Button>
       <div className="flex grow items-center justify-center rounded-md border">
         {renderValue ? renderValue(value) : String(value)}
@@ -47,7 +47,7 @@ export const PlusMinusInput: React.FC<PlusMinusInput> = ({
         onMouseLeave={stopInterval}
         onClick={() => onChange(interval)}
       >
-        <PlusIcon className="size-3" />
+        <Plus className="size-4" />
       </Button>
     </div>
   );
