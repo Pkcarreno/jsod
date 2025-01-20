@@ -30,7 +30,7 @@ export const Header = () => {
           <div className="flex space-x-3">
             {isIframe && <OpenInSite />}
             {!isIframe && <SharingMenu />}
-            <LayoutDirectionToggler />
+            <LayoutDirectionToggler className="hidden md:flex" />
             <ActionButtons />
           </div>
         </div>
