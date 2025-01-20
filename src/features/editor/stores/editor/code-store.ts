@@ -7,7 +7,6 @@ import { queryStorage } from '../../api/query-storage';
 
 interface Metadata {
   title?: string;
-  description?: string;
 }
 
 interface CodeState extends Metadata {
@@ -20,13 +19,11 @@ const _useCodeStore = create<CodeState>()(
   persist(
     (set) => ({
       title: undefined,
-      description: undefined,
       code: '',
       setCode: (code) => set({ code: code }),
       setMetadata: (meta) =>
         set({
           title: meta?.title,
-          description: meta?.description,
         }),
     }),
     {
