@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.8.2](https://github.com/Pkcarreno/jsod/compare/v1.8.1...v1.8.2) (2025-01-20)
+
+
+### Bug Fixes
+
+* **ui:** hide layout toggler on mobile view ([ce7ca99](https://github.com/Pkcarreno/jsod/commit/ce7ca99f8cc65cb08807e7ca529639e4ea79ffb1))
+
 ## [1.8.1](https://github.com/Pkcarreno/jsod/compare/v1.8.0...v1.8.1) (2025-01-20)
 
 
