@@ -1,5 +1,6 @@
 import { FlipHorizontal, FlipVertical } from 'lucide-react';
 
+import type { ButtonProps } from '@/components/ui/button';
 import { Button } from '@/components/ui/button';
 import {
   Tooltip,
@@ -9,7 +10,11 @@ import {
 } from '@/components/ui/tooltip';
 import { useSettingsStore } from '@/features/editor/stores/settings';
 
-export const LayoutDirectionToggler = () => {
+interface Props {
+  className?: ButtonProps['className'];
+}
+
+export const LayoutDirectionToggler: React.FC<Props> = ({ className }) => {
   const { layout_direction, updateLayoutDirection } = useSettingsStore();
 
   const nextDirection =
@@ -24,6 +29,7 @@ export const LayoutDirectionToggler = () => {
           variant="outline"
           size="icon"
           onClick={() => updateLayoutDirection(nextDirection)}
+          className={className}
           asChild
         >
           <TooltipTrigger>
