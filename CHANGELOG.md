@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.8.1](https://github.com/Pkcarreno/jsod/compare/v1.8.0...v1.8.1) (2025-01-20)
+
+
+### Bug Fixes
+
+* **header:** new title label/input ([5215cad](https://github.com/Pkcarreno/jsod/commit/5215cad95a991dd417cae07205961aacee4079cb))
+* remove unused elements ([9de48d1](https://github.com/Pkcarreno/jsod/commit/9de48d107dc969ba9f8c64e0a6d40b21473fda38))
+
 ## [1.8.0](https://github.com/Pkcarreno/jsod/compare/v1.7.2...v1.8.0) (2025-01-17)
 
 
