@@ -21,7 +21,7 @@ const Router = () => {
         </div>
       }
     >
-      <WRouter base={BASE_URL}>
+      <WRouter base="/">
         <Switch>
           {pageRoutes}
           {/* default page */}
