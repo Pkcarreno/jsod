@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.8.3](https://github.com/Pkcarreno/jsod/compare/v1.8.2...v1.8.3) (2025-03-15)
+
+
+### Bug Fixes
+
+* change base url to domain level ([f836f2a](https://github.com/Pkcarreno/jsod/commit/f836f2ac109213725beec18c1fc2b2403bd7198f))
+* new domain ([2990f4e](https://github.com/Pkcarreno/jsod/commit/2990f4eaaf02161a248748d159233c53b0d101f1))
+* new domain ([549ebaf](https://github.com/Pkcarreno/jsod/commit/549ebaf1861613f5f5fb3a3a3b52cc9ff8701847))
+
 ## [1.8.2](https://github.com/Pkcarreno/jsod/compare/v1.8.1...v1.8.2) (2025-01-20)
 
 
