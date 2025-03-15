@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.8.4](https://github.com/Pkcarreno/jsod/compare/v1.8.3...v1.8.4) (2025-03-15)
+
+
+### Bug Fixes
+
+* main route start from `/` base path ([bcf1a55](https://github.com/Pkcarreno/jsod/commit/bcf1a559da001533f4e2f038f927280f1d0ff65b))
+* new redirect page for old links ([45684d5](https://github.com/Pkcarreno/jsod/commit/45684d51c7b45984d643b4e780fcecaf6653c502))
+
 ## [1.8.3](https://github.com/Pkcarreno/jsod/compare/v1.8.2...v1.8.3) (2025-03-15)
 
 
