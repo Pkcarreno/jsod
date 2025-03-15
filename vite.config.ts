@@ -50,12 +50,14 @@ const generateIcons = (basePath: string) => {
   return [...maskableIcons, ...nonMaskableIcons];
 };
 
+const BaseUrl = '/';
+
 export default defineConfig(({ mode }) => {
   process.env = { ...process.env, ...loadEnv(mode, process.cwd()) };
   process.env.BASE_URL = process.env.VITE_BASE_URL ?? '';
 
   return {
-    base: `${process.env.BASE_URL}/`,
+    base: `${BaseUrl}`,
     plugins: [
       react(),
       tsconfigPaths(),
@@ -69,7 +71,7 @@ export default defineConfig(({ mode }) => {
           name: 'JSOD',
           short_name: 'JSOD',
           id: 'com.pkcarreno.jsod',
-          start_url: `${process.env.BASE_URL}/`,
+          start_url: `${BaseUrl}`,
           display: 'standalone',
           background_color: '#FDFEFB',
           theme_color: '#fdfefb',
@@ -81,31 +83,31 @@ export default defineConfig(({ mode }) => {
           shortcuts: [
             {
               name: 'New Editor',
-              url: `${process.env.BASE_URL}/`,
+              url: `${BaseUrl}`,
               description: 'Open new editor',
             },
           ],
           screenshots: [
             {
-              src: `${process.env.BASE_URL}/screenshots/desktop-1.jpeg`,
+              src: `/screenshots/desktop-1.jpeg`,
               sizes: '1694×930',
               type: 'image/jpeg',
               form_factor: 'wide',
             },
             {
-              src: `${process.env.BASE_URL}/screenshots/mobile-1.jpeg`,
+              src: `/screenshots/mobile-1.jpeg`,
               sizes: '412×915',
               type: 'image/jpeg',
               form_factor: 'narrow',
             },
             {
-              src: `${process.env.BASE_URL}/screenshots/mobile-2.jpeg`,
+              src: `/screenshots/mobile-2.jpeg`,
               sizes: '412×915',
               type: 'image/jpeg',
               form_factor: 'narrow',
             },
           ],
-          icons: generateIcons(process.env.BASE_URL),
+          icons: generateIcons(''),
         },
         workbox: {
           globPatterns: ['**/*.{html,js,css,svg,woff,woff2,ttf,eot,ico,wasm}'],
